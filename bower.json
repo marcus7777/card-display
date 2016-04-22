@@ -1,0 +1,15 @@
+{
+  "name": "card-display",
+  "version": "1.0.0",
+  "description": "displays card",
+  "main": "card-display.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "dependencies": {
+    "polymer": "*",
+    "card-deck": "marcus7777/card-deck#f69c025c29",
+    "paper-material": "PolymerElements/paper-material#~1.0.6"
+  }
+}
