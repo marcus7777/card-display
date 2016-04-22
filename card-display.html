@@ -38,7 +38,12 @@
       }
     },
     isCard: function(card, isA){
-      return true
+      if (isA === "card") {
+        return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http")
+      }
+      if (isA === "deck") {
+        return card.url.split(":")[0] === "deck"
+      }
     }
   })
 </script>
