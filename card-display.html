@@ -65,7 +65,7 @@
       <update-data update="{{cards}}" data="{{sortMe}}"></update-data>
     </template>
     <template is="dom-if" if="{{selectable}}">
-      <iron-selector multi selected-values="{{a}}">
+      <iron-selector multi selected-values="{{selected}}">
         <template is="dom-repeat" items="{{cards}}" as="card">
           <div style="display:inline-block;">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
@@ -85,9 +85,6 @@
           </div>
         </template>
       </iron-selector>
-      <template is="dom-repeat" items="{{a}}">
-        {{item}}
-      </template>
     </template>
   </template>
 </dom-module>
@@ -95,9 +92,8 @@
   Polymer({
     is: "card-display",
     properties: {
-      cards: {
-        notify: true
-      },
+      cards: {notify: true},
+      selected: {notify: true},
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, sortable)"}
