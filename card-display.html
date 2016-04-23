@@ -86,6 +86,28 @@
         </template>
       </iron-selector>
     </template>
+    <template is="dom-if" if="{{pickable}}">
+      <iron-selector multi selected-values="{{selected}}">
+        <template is="dom-repeat" items="{{cards}}" as="card">
+          <div style="display:inline-block;">
+            <template is="dom-if" if="{{isCard(card,'deck')}}">
+              <card-deck elevation="4" width="200" height="250" style="width:200px;height:250px;margin:12px 7px">
+                <div style="background-size:cover;background-position:center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
+                <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
+              </card-deck>
+            </template>
+            <template is="dom-if" if="{{isCard(card,'card')}}">
+              <paper-material elevation="4" style="margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
+                <div style="background-size:cover;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
+                <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
+                <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
+              </paper-material>
+            </template>
+            <paper-fab mini icon="touch-app"></paper-fab>
+          </div>
+        </template>
+      </iron-selector>
+    </template>
   </template>
 </dom-module>
 <script>
@@ -96,10 +118,11 @@
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
-      veiwable: {type: Boolean, computed:"getVeiwable(selectable, sortable)"}
+      pickable: {type: Boolean, value: false},
+      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
     },
-    getVeiwable(selectable, sortable) {
-      return !(selectable || sortable)
+    getVeiwable(selectable, pickable, sortable) {
+      return !(selectable  || pickable || sortable)
     },
     isCard: function(card, isA){
       if (isA === "card") {
