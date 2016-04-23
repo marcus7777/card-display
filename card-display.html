@@ -131,7 +131,15 @@
       }
     },
     picked: function(e){
-      this.fire("picked",this.select)
+      var selected
+      if (e.target.parentElement.parentElement.hasOwnProperty(dataIndex)) {
+        selected = e.target.parentElement.parentElement.dataIndex
+      } else if (e.target.parentElement.hasOwnProperty(dataIndex)) {
+        selected = e.target.parentElement.dataIndex
+      } else if (e.target.hasOwnProperty(dataIndex)) {
+        selected = e.target.dataIndex
+      } 
+      this.fire("picked", selected)
     }
   })
 </script>
