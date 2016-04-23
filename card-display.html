@@ -25,7 +25,7 @@
     
     <template is="dom-if" if="{{veiwable}}">
       <template is="dom-repeat" items="{{cards}}" as="card">
-        <div style="display:inline-block">
+        <div style="float:left;">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <card-deck elevation="4" width="200" height="250" style="width:200px;height:250px;margin:12px 7px">
               <div style="background-size:cover;background-position:center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
