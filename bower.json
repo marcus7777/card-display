@@ -9,7 +9,11 @@
   ],
   "dependencies": {
     "polymer": "*",
-    "card-deck": "marcus7777/card-deck#f69c025c29",
-    "paper-material": "PolymerElements/paper-material#~1.0.6"
+    "card-deck": "marcus7777/card-deck#master",
+    "paper-material": "PolymerElements/paper-material#~1.0.6",
+    "sortable-list": "marcus7777/sortable-list#master",
+    "update-data": "marcus7777/update-data#master",
+    "paper-fab": "PolymerElements/paper-fab#~1.2.0",
+    "iron-selector": "PolymerElements/iron-selector#~1.0.8"
   }
 }
