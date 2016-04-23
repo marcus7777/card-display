@@ -90,7 +90,10 @@
       },
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
-      veiwable: {type: Boolean, value: true}
+      veiwable: {type: Boolean, computed:"getVeiwable(selectable, sortable)"}
+    },
+    getVeiwable(selectable, sortable) {
+      return !(selectable || sortable)
     },
     isCard: function(card, isA){
       if (isA === "card") {
