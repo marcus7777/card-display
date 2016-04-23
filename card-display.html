@@ -87,7 +87,7 @@
       </iron-selector>
     </template>
     <template is="dom-if" if="{{pickable}}">
-      <iron-selector selected-values="{{selected}}">
+      <iron-selector select="{{select}}">
         <template is="dom-repeat" items="{{cards}}" as="card">
           <div style="display:inline-block;" on-tap="picked">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
@@ -133,7 +133,7 @@
       }
     },
     picked: function(){
-      this.fire("picked",this.selected)
+      this.fire("picked",this.select)
     }
   })
 </script>
