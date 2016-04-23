@@ -11,6 +11,26 @@
 
 <dom-module id="card-display">
   <template>
+    <template is="dom-if" if="{{veiwable}}">
+      <template is="dom-repeat" items="{{cards}}" as="card">
+        <div style="display:inline-block;">
+          <template is="dom-if" if="{{isCard(card,'deck')}}">
+            <card-deck elevation="4" width="200" height="250" style="width:200px;height:250px;margin:12px 7px">
+              <div style="background-size:cover;background-position:center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
+              <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
+            </card-deck>
+          </template>
+          <template is="dom-if" if="{{isCard(card,'card')}}">
+            <paper-material elevation="4" style="margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
+              <a href="{{card.url}}" target="_blank" style="text-decoration: initial;color: black"><div style="background-size:cover;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div></a><br />
+              <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3></a>
+              <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
+            </paper-material>
+          </template>
+          <paper-fab mini icon="done"></paper-fab>
+        </div>
+      </template>
+    </template>
     <template is="dom-if" if="{{sortable}}">
       <sortable-list sort-me="{{cards}}" output="{{sortMe}}">
         <template is="dom-repeat" items="{{sortMe}}" as="card">
@@ -38,6 +58,7 @@
       <iron-selector multi selected-values="{{a}}">
         <template is="dom-repeat" items="{{sortMe}}" as="card">
           <div style="display:inline-block;">
+            <paper-fab mini icon="done"></paper-fab>
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <card-deck elevation="4" width="200" height="250" style="width:200px;height:250px;margin:12px 7px">
                 <div style="background-size:cover;background-position:center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
@@ -68,7 +89,8 @@
         notify: true
       },
       selectable: {type: Boolean, value: false},
-      sortable: {type: Boolean, value: true}
+      sortable: {type: Boolean, value: false},
+      veiwable: {type: Boolean, value: true}
     },
     isCard: function(card, isA){
       if (isA === "card") {
