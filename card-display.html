@@ -13,6 +13,12 @@
 
 <dom-module id="card-display">
   <template>
+    <style>
+      .iron-selected paper-fab {
+        background: red;
+      }
+    </style>
+    position: absolute;
     <template is="dom-if" if="{{veiwable}}">
       <template is="dom-repeat" items="{{cards}}" as="card">
         <div style="display:inline-block;">
