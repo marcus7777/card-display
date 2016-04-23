@@ -131,6 +131,9 @@
       if (isA === "deck") {
         return card.url.split(":")[0] === "deck"
       }
+    },
+    pickedfunction(e){
+      this.fire("picked",this.selected)
     }
   })
 </script>
