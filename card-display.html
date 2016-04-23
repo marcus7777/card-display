@@ -56,7 +56,7 @@
     </template>
     <template is="dom-if" if="{{selectable}}">
       <iron-selector multi selected-values="{{a}}">
-        <template is="dom-repeat" items="{{sortMe}}" as="card">
+        <template is="dom-repeat" items="{{cards}}" as="card">
           <div style="display:inline-block;">
             <paper-fab mini icon="done"></paper-fab>
             <template is="dom-if" if="{{isCard(card,'deck')}}">
