@@ -124,7 +124,9 @@
       </template>
     </template>
     <paper-dialog id="dialDeck">
-      <card-display cards="{{deck}}"></card-display>
+      <template is="dom-if" if="{{deck}}">
+        <card-display cards="{{deck}}"></card-display>
+      </template>
     </paper-dialog>  
   </template>
 </dom-module>
@@ -161,7 +163,8 @@
       } 
       // get data
       this.deck = this.cards[selected].data 
-      // open dialog with data
+      this.$.dialDeck.open()
+
     },
     picked: function(e){
       var selected
