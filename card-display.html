@@ -4,7 +4,8 @@
 <link rel="import" href="../sortable-list/sortable-list.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
-<link rel="import" href="../icon-icons/iron-icons.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../polymer/polymer.html">
 <!--
 `<card-display cards="{{cards}}"></card-display>` displays card
@@ -27,10 +28,10 @@
       <template is="dom-repeat" items="{{cards}}" as="card">
         <div style="float:left">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div style="margin: 5px 0">
+            <div style="margin: 5px 0" on-tap="openDeck"  data-index="{{index}}">
               <card-deck elevation="4" width="200" height="250" style="width:200px;height:250px;margin:12px 7px">
-                <div style="width:200px;height:147px">
-                  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" class="style-scope iron-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
+                <div style="width:200px;height:147px" data-index="{{index}}">
+                  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block; width: 100%; height: 100%"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
                 </div><br />
                 <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
               </card-deck>
@@ -122,6 +123,9 @@
         </div>
       </template>
     </template>
+    <paper-dialog id="dialDeck">
+      <card-display cards="{{deck}}"></card-display>
+    </paper-dialog>  
   </template>
 </dom-module>
 <script>
@@ -145,6 +149,19 @@
       if (isA === "deck") {
         return card.url.split(":")[0] === "deck"
       }
+    },
+    openDeck: function(e){
+      var selected
+      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.parentElement.dataIndex
+      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.dataIndex
+      } else if (e.target.hasOwnProperty("dataIndex")) {
+        selected = e.target.dataIndex
+      } 
+      // get data
+      this.deck = this.cards[selected].data 
+      // open dialog with data
     },
     picked: function(e){
       var selected
