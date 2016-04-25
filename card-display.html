@@ -18,14 +18,15 @@
       paper-fab {
         position: absolute;
         background: gray;
+        margin: -150px 88px;
       }
       .iron-selected paper-fab {
         background: red;
       }
     </style>
     
-    <template is="dom-if" if="{{veiwable}}">
-      <template id="cardsV" is="dom-repeat" items="{{cards}}" as="card">
+    <template is="dom-if" if="{{veiwable}}" restamp>
+      <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div style="max-width:45%;float:left;heigth:250px">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck"  data-index="{{index}}">
@@ -47,9 +48,9 @@
         </div>
       </template>
     </template>
-    <template is="dom-if" if="{{sortable}}">
+    <template is="dom-if" if="{{sortable}}" restamp>
       <sortable-list sort-me="{{cards}}" output="{{sortMe}}">
-        <template id="cardsS" is="dom-repeat" items="{{sortMe}}" as="card">
+        <template id="cardsS" is="dom-repeat" items="{{sortMe}}" as="card" observe="title data">
           <div style="max-width:100%;float:left">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
@@ -73,12 +74,12 @@
       </sortable-list>
       <update-data update="{{cards}}" data="{{sortMe}}"></update-data>
     </template>
-    <template is="dom-if" if="{{selectable}}">
+    <template is="dom-if" if="{{selectable}}" restamp>
       <iron-selector multi selected-values="{{selected}}">
-        <template id="cardsSe" is="dom-repeat" items="{{cards}}" as="card">
+        <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
           <div style="max-width:100%;float:left">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div style="margin: 5px 0">
+              <div style="margin: 5px 0">
                 <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:240px;margin:12px 7px">
                   <div style="max-width:70%;width: 147px; height: 147px; padding: 0 15%" data-index="{{index}}">
                     <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" class="style-scope iron-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
@@ -99,12 +100,12 @@
         </template>
       </iron-selector>
     </template>
-    <template is="dom-if" if="{{pickable}}">
-      <template id="cardsP" is="dom-repeat" items="{{cards}}" as="card">
+    <template is="dom-if" if="{{pickable}}" restamp>
+      <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div style="max-width:100%;float:left" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0">
-              <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:250px;margin:12px 7px">
+              <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:240px;margin:12px 7px">
                 <div style="max-width:70%;width: 147px; height: 147px; padding: 0 15%" data-index="{{index}}">
                   <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" class="style-scope iron-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
                 </div><br />
@@ -124,7 +125,7 @@
       </template>
     </template>
     <paper-dialog id="dialDeck">
-      <template is="dom-if" if="{{deck}}">
+      <template is="dom-if" if="{{deck}}" restamp>
         <card-display cards="{{deck}}"></card-display>
       </template>
     </paper-dialog>  
@@ -140,13 +141,6 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
-    },
-    observers: ["reload(cards.*)"],
-    reload: function(){
-      this.$.cardsV.render()
-      this.$.cardsP.render()
-      this.$.cardsS.render()
-      this.$.cardsSe.render()
     },
     getVeiwable: function(selectable, pickable, sortable) {
       return !(selectable  || pickable || sortable)
