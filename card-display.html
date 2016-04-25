@@ -25,7 +25,7 @@
     </style>
     
     <template is="dom-if" if="{{veiwable}}">
-      <template is="dom-repeat" items="{{cards}}" as="card">
+      <template id="cardsV" is="dom-repeat" items="{{cards}}" as="card">
         <div style="max-width:45%;float:left;heigth:250px">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck"  data-index="{{index}}">
@@ -49,7 +49,7 @@
     </template>
     <template is="dom-if" if="{{sortable}}">
       <sortable-list sort-me="{{cards}}" output="{{sortMe}}">
-        <template is="dom-repeat" items="{{sortMe}}" as="card">
+        <template id="cardsS" is="dom-repeat" items="{{sortMe}}" as="card">
           <div style="max-width:100%;float:left">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
@@ -75,7 +75,7 @@
     </template>
     <template is="dom-if" if="{{selectable}}">
       <iron-selector multi selected-values="{{selected}}">
-        <template is="dom-repeat" items="{{cards}}" as="card">
+        <template id="cardsSe" is="dom-repeat" items="{{cards}}" as="card">
           <div style="max-width:100%;float:left">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0">
@@ -100,7 +100,7 @@
       </iron-selector>
     </template>
     <template is="dom-if" if="{{pickable}}">
-      <template is="dom-repeat" items="{{cards}}" as="card">
+      <template id="cardsP" is="dom-repeat" items="{{cards}}" as="card">
         <div style="max-width:100%;float:left" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0">
@@ -141,7 +141,14 @@
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
     },
-    getVeiwable(selectable, pickable, sortable) {
+    observers: ["reload(cards.*)"],
+    reload: function(){
+      this.$.cardsV.render()
+      this.$.cardsP.render()
+      this.$.cardsS.render()
+      this.$.cardsSe.render()
+    },
+    getVeiwable: function(selectable, pickable, sortable) {
       return !(selectable  || pickable || sortable)
     },
     isCard: function(card, isA){
