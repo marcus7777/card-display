@@ -141,14 +141,7 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       searchale: {type: Boolean, value: false},
-      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
-      searchaleCards: {type: Boolean, computed:"flaten(cards)"}
-    },
-    flaten: function(cards) {
-      var output
-      var list
-      
-      return 
+      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
     },
     getVeiwable: function(selectable, pickable, sortable) {
       return !(selectable || pickable || sortable || searchale)
