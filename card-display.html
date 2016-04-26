@@ -60,7 +60,7 @@
                   <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
                 </template>
 
-                <template is="dom-if" if="{{onLink}}">
+                <template is="dom-if" if="{{!onLink}}">
                   <div style="background-size:c over;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
                   <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
                   <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
@@ -136,9 +136,9 @@
     isCard: function(card, isA){
       if (isA === "card") {
         if (card.url.split(":")[0] === "user") {
-          this.noLinks = true
+          this.noLink = true
         } else {
-          this.noLinks = false
+          this.noLink = false
         }
         return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http" || card.url.split(":")[0] === "user")
       }
