@@ -39,8 +39,8 @@
               <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3></a>
               <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
             </template>
-            <template is="dom-if" if="{{cardHasLink(card)}}">
-              <div style="background-size:c over;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
+            <template is="dom-if" if="{{!cardHasLink(card)}}">
+              <div style="background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
               <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
               <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
             </template>
@@ -64,7 +64,7 @@
                   <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3></a>
                   <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
                 </template>
-                <template is="dom-if" if="{{cardHasLink(card)}}">
+                <template is="dom-if" if="{{!cardHasLink(card)}}">
                   <div style="background-size:c over;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
                   <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
                   <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
