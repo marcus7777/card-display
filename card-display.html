@@ -30,12 +30,7 @@
         <div style="max-width:45%;float:left;heigth:250px" on-tap="tapped">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck" data-index="{{index}}">
-              <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:240px;margin:12px 7px">
-                <div style="max-width:70%;width: 147px; height: 147px; padding: 0 15%" data-index="{{index}}">
-                  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
-                </div><br />
-                <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
-              </card-deck>
+              <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'card')}}">
@@ -54,19 +49,22 @@
           <div style="max-width:100%;float:left" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
-                <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:240px;margin:12px 7px">
-                  <div style="max-width:70%;width: 147px; height: 147px; padding: 0 15%" data-index="{{index}}">
-                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" class="style-scope iron-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
-                  </div><br />
-                  <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
-                </card-deck>
+                <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'card')}}">
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-                <a href="{{card.url}}" target="_blank" style="text-decoration: initial;color: black"><div style="background-size:c over;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div></a><br />
-                <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3></a>
-                <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
+                <template is="dom-if" if="{{!onLink}}">
+                  <a href="{{card.url}}" target="_blank" style="text-decoration: initial;color: black"><div style="background-size:c over;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div></a><br />
+                  <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3></a>
+                  <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
+                </template>
+
+                <template is="dom-if" if="{{onLink}}">
+                  <div style="background-size:c over;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
+                  <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
+                  <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
+                </template>
               </paper-material>
             </template>
           </div>
@@ -80,12 +78,7 @@
           <div style="max-width:100%;float:left" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
-                <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:240px;margin:12px 7px">
-                  <div style="max-width:70%;width: 147px; height: 147px; padding: 0 15%" data-index="{{index}}">
-                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" class="style-scope iron-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
-                  </div><br />
-                  <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
-                </card-deck>
+                <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'card')}}">
@@ -105,12 +98,7 @@
         <div style="max-width:100%;float:left" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0">
-              <card-deck elevation="4" width="200" height="250" style="max-width:95%;width:200px;height:240px;margin:12px 7px">
-                <div style="max-width:70%;width: 147px; height: 147px; padding: 0 15%" data-index="{{index}}">
-                  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" class="style-scope iron-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope iron-icon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" class="style-scope iron-icon"></path></g></svg>
-                </div><br />
-                <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
-              </card-deck>
+              <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'card')}}">
@@ -147,6 +135,11 @@
     },
     isCard: function(card, isA){
       if (isA === "card") {
+        if (card.url.split(":")[0] === "user") {
+          this.noLinks = true
+        } else {
+          this.noLinks = false
+        }
         return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http" || card.url.split(":")[0] === "user")
       }
       if (isA === "deck") {
@@ -189,6 +182,17 @@
         selected = e.target.dataIndex
       } 
       this.fire("picked", selected)
+    },
+    tapped: function(e){
+      var selected
+      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.parentElement.dataIndex
+      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.dataIndex
+      } else if (e.target.hasOwnProperty("dataIndex")) {
+        selected = e.target.dataIndex
+      } 
+      this.fire("tapped", selected)
     }
   })
 </script>
