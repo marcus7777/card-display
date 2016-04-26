@@ -140,11 +140,10 @@
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
-      searchale: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
     },
     getVeiwable: function(selectable, pickable, sortable) {
-      return !(selectable || pickable || sortable || searchale)
+      return !(selectable || pickable || sortable)
     },
     isCard: function(card, isA){
       if (isA === "card") {
