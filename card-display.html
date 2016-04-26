@@ -140,14 +140,22 @@
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
-      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
+      searchale: {type: Boolean, value: false},
+      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
+      searchaleCards: {type: Boolean, computed:"flaten(cards)"}
+    },
+    flaten: function(cards) {
+      var output
+      var list
+      
+      return 
     },
     getVeiwable: function(selectable, pickable, sortable) {
-      return !(selectable  || pickable || sortable)
+      return !(selectable || pickable || sortable || searchale)
     },
     isCard: function(card, isA){
       if (isA === "card") {
-        return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http")
+        return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http" || card.url.split(":")[0] === "user")
       }
       if (isA === "deck") {
         return card.url.split(":")[0] === "deck"
