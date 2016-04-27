@@ -1,12 +1,14 @@
 <link rel="import" href="../paper-material/paper-material.html">
-<link rel="import" href="../card-deck/card-deck.html">
-<link rel="import" href="../update-data/update-data.html">
 <link rel="import" href="../sortable-list/sortable-list.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
-<link rel="import" href="../paper-fab/paper-fab.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../update-data/update-data.html">
+<link rel="import" href="../textfit-div/textfit-div.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../card-deck/card-deck.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
 <link rel="import" href="../polymer/polymer.html">
+
 <!--
 `<card-display cards="{{cards}}"></card-display>` displays card
 @demo demo.html
@@ -134,7 +136,7 @@
           </template>
           <template is="dom-if" if="{{isCard(card,'survey')}}">
             <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-              <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
+              <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
               <paper-button>Yes</paper-button><paper-button>No</paper-button>
             </paper-material>
           </template>
