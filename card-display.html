@@ -49,10 +49,8 @@
           </template>
           <template is="dom-if" if="{{isCard(card,'survey')}}">
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-                <template is="dom-if" if="{{cardHasLink(card)}}">
-                  <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3></a>
-                  <a href="{{card.url}}" style="text-decoration: initial;color: black"><p style="margin: 0; padding: 0 13px;">{{card.data}}</p></a>
-                </template>
+                <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
+                <paper-fab mini icon="done"></paper-fab><paper-fab mini icon="cross"></paper-fab>
               </paper-material>
           </template>
         </div>
