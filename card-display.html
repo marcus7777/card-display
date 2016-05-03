@@ -52,7 +52,7 @@
           <template is="dom-if" if="{{isCard(card,'survey')}}">
             <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
               <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
-              <div inner-h-t-m-l="{{card.data}}"></div>
+              <div data-index="{{index}}" inner-h-t-m-l="{{card.data}}"></div>
             </paper-material>
           </template>
         </div>
@@ -84,7 +84,7 @@
             <template is="dom-if" if="{{isCard(card,'survey')}}">
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
                 <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
-                <div inner-h-t-m-l="{{card.data}}"></div>
+                <div data-index="{{index}}" inner-h-t-m-l="{{card.data}}"></div>
               </paper-material>
             </template>
           </div>
