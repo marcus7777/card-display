@@ -223,7 +223,7 @@
       } else if (e.target.hasOwnProperty("dataIndex")) {
         selected = e.target.dataIndex
       } 
-      this.fire("tapped", selected, e.target.innerText)
+      this.fire("tapped", {selected:selected, text: e.target.innerText})
     }
   })
 </script>
