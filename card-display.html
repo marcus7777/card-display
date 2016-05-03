@@ -52,7 +52,8 @@
           <template is="dom-if" if="{{isCard(card,'survey')}}">
             <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
               <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
-              <paper-button>Yes</paper-button><paper-button>No</paper-button>
+              <paper-button>Yes</paper-button>
+              <paper-button>No</paper-button>
             </paper-material>
           </template>
         </div>
@@ -111,7 +112,6 @@
             <template is="dom-if" if="{{isCard(card,'survey')}}">
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
                 <h3 style="margin: 0; padding: 13px;">{{card.title}}</h3>
-                <paper-button>Yes</paper-button><paper-button>No</paper-button>
               </paper-material>
             </template>
             <paper-fab mini icon="done"></paper-fab>
@@ -137,7 +137,6 @@
           <template is="dom-if" if="{{isCard(card,'survey')}}">
             <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
               <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
-              <paper-button>Yes</paper-button><paper-button>No</paper-button>
             </paper-material>
           </template>
           <paper-fab mini icon="touch-app"></paper-fab>
