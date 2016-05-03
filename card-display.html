@@ -164,7 +164,7 @@
         if (attr !== "data") {
           //replace {{}}
           re = new RegExp("{{"+attr+"}}", "gim")
-          output.replace(re, card[attr])
+          output = output.replace(re, card[attr])
         }
       }
       
