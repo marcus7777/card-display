@@ -3,7 +3,6 @@
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../update-data/update-data.html">
-<link rel="import" href="../textfit-div/textfit-div.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../card-deck/card-deck.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
@@ -49,10 +48,9 @@
               </template>
             </paper-material>
           </template>
-          <template is="dom-if" if="{{isCard(card,'survey')}}">
+          <template is="dom-if" if="{{isCard(card,'custom')}}">
             <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-              <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
-              <div data-index="{{index}}" inner-h-t-m-l="{{card.data}}"></div>
+              <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
             </paper-material>
           </template>
         </div>
@@ -83,8 +81,7 @@
             </template>
             <template is="dom-if" if="{{isCard(card,'survey')}}">
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-                <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
-                <div data-index="{{index}}" inner-h-t-m-l="{{card.data}}"></div>
+                <div data-index="{{index}}" inner-h-t-m-l="{{GetHtml(card)}}"></div>
               </paper-material>
             </template>
           </div>
@@ -108,9 +105,9 @@
                 <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
               </paper-material>
             </template>
-            <template is="dom-if" if="{{isCard(card,'survey')}}">
+            <template is="dom-if" if="{{isCard(card,'custom')}}">
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-                <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
+                <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
               </paper-material>
             </template>
             <paper-fab mini icon="done"></paper-fab>
@@ -133,9 +130,9 @@
               <p style="margin: 0;padding: 0 13px;">{{card.data}}</p>
             </paper-material>
           </template>
-          <template is="dom-if" if="{{isCard(card,'survey')}}">
+          <template is="dom-if" if="{{isCard(card,'custom')}}">
             <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
-              <h3 style="margin:0;padding:13px;height:168px;"><textfit-div text="{{card.title}}"></textfit-div></h3>
+              <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
             </paper-material>
           </template>
           <paper-fab mini icon="touch-app"></paper-fab>
@@ -160,6 +157,19 @@
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
     },
+    getHtml: function(card) {
+      var output = card.data + " "
+      
+      for (var attr in card) {
+        if (attr !== "data") {
+          //replace {{}}
+          re = new RegExp("{{"+attr+"}}", "gim"])
+          output.replace(re, card[attr])
+        }
+      }
+      
+      return output
+    },
     getVeiwable: function(selectable, pickable, sortable) {
       return !(selectable || pickable || sortable)
     },
@@ -168,7 +178,7 @@
     },
     isCard: function(card, isA){
       if (isA === "survey") {
-        return (card.url.split(":")[0] === "survey")
+        return (card.url.split(":")[0] === "custom")
       }
       if (isA === "card") {
         return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http" || card.url.split(":")[0] === "user")
