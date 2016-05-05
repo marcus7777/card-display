@@ -27,7 +27,8 @@
     </style>
     
     <template is="dom-if" if="{{veiwable}}" restamp>
-      <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
+      <template is="dom-repeat" items="{{cards}}" observe="title data">
+        <update-data data="{{getCard(item.url, lookup)}}" update="{{card}}" wait="0" ></update-data> 
         <div style="max-width:45%;float:left;heigth:250px" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck" data-index="{{index}}">
