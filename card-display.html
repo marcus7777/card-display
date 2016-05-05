@@ -50,7 +50,6 @@
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
             <template is="dom-if" if="{{!getCardAttr(card.url, lookup, 'hidden')}}">
-              testing
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
                 <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card.url, lookup, 'html')}}"></div>
               </paper-material>
