@@ -158,6 +158,9 @@
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
     },
+    getCard(index, cards){
+      return cards[index]
+    },
     getHtml: function(card) {
       var output = card.data + " "
       
