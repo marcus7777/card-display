@@ -31,7 +31,7 @@
         <div style="max-width:45%;float:left;heigth:250px" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck" data-index="{{index}}">
-              <card-deck title="{{item.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+              <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'card')}}">
@@ -50,6 +50,7 @@
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
             <template is="dom-if" if="{{!getCardAttr(card.url, lookup, 'hidden')}}">
+              testing
               <paper-material elevation="4" style="max-width:95%;margin:12px 7px;background:#fff;display:inline-block;width:200px;height:250px">
                 <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card.url, lookup, "html")}}"></div>
               </paper-material>
