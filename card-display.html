@@ -167,7 +167,7 @@
       if (attr === "html") {
         return this.getHtml(cards[index])
       } else if (attr === "hidden") {
-        return this.getHtml(cards[index])
+        return !!cards[index][attr]
       } else {
         return cards[index][attr]
       }
