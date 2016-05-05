@@ -162,6 +162,13 @@
     getCard: function(index, cards){
       return cards[index]
     },
+    getCardAttr: function(index, cards, attr){
+      if (attr === "html") {
+        return this.getHtml(cards[index])
+      } else {
+        return cards[index][attr]
+      }
+    },
     getHtml: function(card) {
       var output = card.data + " "
       
