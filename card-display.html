@@ -12,120 +12,7 @@
 `<card-display cards="{{cards}}"></card-display>` displays card
 @demo demo.html
 -->
-<script>
-  Polymer({
-    is: "card-display",
-    properties: {
-      cards: {notify: true},
-      lookup:{value: {}},
-      selected: {notify: true},
-      selectable: {type: Boolean, value: false},
-      sortable: {type: Boolean, value: false},
-      pickable: {type: Boolean, value: false},
-      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
-    },
-    getCard: function(index, cards){
-      return cards[index]
-    },
-    getCardAttr: function(card, lookup, attr){
-      card = lookup[card.url] || card
-      
-      if (attr === "html") {
-        return this.getHtml(card)
-      } else if (attr === "hidden") {
-        return !!card.hidden
-      } else {
-        return card[attr]
-      }
-    },
-    getHtml: function(card) {
-      var output = card.data + " "
-      
-      for (var attr in card) {
-        if (attr !== "data") {
-          //replace {{}}
-          re = new RegExp("{{"+attr+"}}", "gim")
-          output = output.replace(re, card[attr])
-        }
-      }
-      
-      return output
-    },
-    getVeiwable: function(selectable, pickable, sortable) {
-      if (selectable || pickable) {
-        this.sortable = false
-      }
-      if (sortable || pickable) {
-        this.selectable = false
-      }
-      if (selectable || sortable) {
-        this.pickable = false
-      }
-      return !(selectable || pickable || sortable)
-    },
-    cardHasLink: function(card) {
-      return !(card.url.split(":")[0] === "user")
-    },
-    isCard: function(card, isA){
-      if (isA === "custom") {
-        return (card.url.split(":")[0] === "custom")
-      }
-      if (isA === "card") {
-        return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http" || card.url.split(":")[0] === "user")
-      }
-      if (isA === "deck") {
-        return card.url.split(":")[0] === "deck"
-      }
-    },
-    openDeck: function(e){
-      function objectToArray(data) {
-        var output = []
-        if (data) {
-          var keys = Object.keys(data)
-          for (var i = 0; i < keys.length; i++) {
-            if (typeof data[keys[i]] === 'object') {
-              output.push(data[keys[i]])
-            }
-          }
-        }
-        return output
-      }
-      var selected
-      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
-        selected = e.target.parentElement.parentElement.dataIndex
-      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
-        selected = e.target.parentElement.dataIndex
-      } else if (e.target.hasOwnProperty("dataIndex")) {
-        selected = e.target.dataIndex
-      } 
-      // get data
-      this.set("deck", objectToArray(this.cards[selected].data))
-      this.$.dialDeck.open()
-    },
-    picked: function(e){
-      var selected
-      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
-        selected = e.target.parentElement.parentElement.dataIndex
-      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
-        selected = e.target.parentElement.dataIndex
-      } else if (e.target.hasOwnProperty("dataIndex")) {
-        selected = e.target.dataIndex
-      } 
-      this.fire("picked", selected)
-    },
-    tapped: function(e){
-      var selected
-      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
-        selected = e.target.parentElement.parentElement.dataIndex
-      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
-        selected = e.target.parentElement.dataIndex
-      } else if (e.target.hasOwnProperty("dataIndex")) {
-        selected = e.target.dataIndex
-      } 
-      this.fire("tapped", {card: this.cards[selected], text: e.target.innerText, tag: e.target.tagName})
-    }
-  })
-</script>
+
 <dom-module id="card-display">
   <template>
     <style>
@@ -297,3 +184,117 @@
     </paper-dialog>  
   </template>
 </dom-module>
+<script>
+  Polymer({
+    is: "card-display",
+    properties: {
+      cards: {notify: true},
+      lookup:{value: {}},
+      selected: {notify: true},
+      selectable: {type: Boolean, value: false},
+      sortable: {type: Boolean, value: false},
+      pickable: {type: Boolean, value: false},
+      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
+    },
+    getCard: function(index, cards){
+      return cards[index]
+    },
+    getCardAttr: function(card, lookup, attr){
+      card = lookup[card.url] || card
+      
+      if (attr === "html") {
+        return this.getHtml(card)
+      } else if (attr === "hidden") {
+        return !!card.hidden
+      } else {
+        return card[attr]
+      }
+    },
+    getHtml: function(card) {
+      var output = card.data + " "
+      
+      for (var attr in card) {
+        if (attr !== "data") {
+          //replace {{}}
+          re = new RegExp("{{"+attr+"}}", "gim")
+          output = output.replace(re, card[attr])
+        }
+      }
+      
+      return output
+    },
+    getVeiwable: function(selectable, pickable, sortable) {
+      if (selectable || pickable) {
+        this.sortable = false
+      }
+      if (sortable || pickable) {
+        this.selectable = false
+      }
+      if (selectable || sortable) {
+        this.pickable = false
+      }
+      return !(selectable || pickable || sortable)
+    },
+    cardHasLink: function(card) {
+      return !(card.url.split(":")[0] === "user")
+    },
+    isCard: function(card, isA){
+      if (isA === "custom") {
+        return (card.url.split(":")[0] === "custom")
+      }
+      if (isA === "card") {
+        return (card.url.split(":")[0] === "https" || card.url.split(":")[0] === "http" || card.url.split(":")[0] === "user")
+      }
+      if (isA === "deck") {
+        return card.url.split(":")[0] === "deck"
+      }
+    },
+    openDeck: function(e){
+      function objectToArray(data) {
+        var output = []
+        if (data) {
+          var keys = Object.keys(data)
+          for (var i = 0; i < keys.length; i++) {
+            if (typeof data[keys[i]] === 'object') {
+              output.push(data[keys[i]])
+            }
+          }
+        }
+        return output
+      }
+      var selected
+      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.parentElement.dataIndex
+      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.dataIndex
+      } else if (e.target.hasOwnProperty("dataIndex")) {
+        selected = e.target.dataIndex
+      } 
+      // get data
+      this.set("deck", objectToArray(this.cards[selected].data))
+      this.$.dialDeck.open()
+    },
+    picked: function(e){
+      var selected
+      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.parentElement.dataIndex
+      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.dataIndex
+      } else if (e.target.hasOwnProperty("dataIndex")) {
+        selected = e.target.dataIndex
+      } 
+      this.fire("picked", selected)
+    },
+    tapped: function(e){
+      var selected
+      if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.parentElement.dataIndex
+      } else if (e.target.parentElement.hasOwnProperty("dataIndex")) {
+        selected = e.target.parentElement.dataIndex
+      } else if (e.target.hasOwnProperty("dataIndex")) {
+        selected = e.target.dataIndex
+      } 
+      this.fire("tapped", {card: this.cards[selected], text: e.target.innerText, tag: e.target.tagName})
+    }
+  })
+</script>
