@@ -24,6 +24,22 @@
       .iron-selected paper-fab {
         background: red;
       }
+      .cardtitlestyle {
+        max-width:95%;
+        width:200px;
+        height:240px;
+        margin:12px 7px;
+      }
+      .cardstyle {
+      max-width: 95%;
+      margin: 12px 7px;
+      background: #fff;
+      display: inline-block;
+      width: 190px;
+      height: 235px;
+      padding-top: 20px;
+      }
+      
     </style>
     
     <template is="dom-if" if="{{veiwable}}" restamp>
@@ -31,11 +47,11 @@
         <div style="max-width:45%;float:left;heigth:250px" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck" data-index="{{index}}">
-              <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+              <card-deck title="{{card.title}}"  class="cardtitlestyle"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'card')}}">
-            <paper-material elevation="4" style="margin: 12px 7px;background: #fff;display: inline-block;width: 190px;height: 235px;padding-top: 20px">
+            <paper-material elevation="4" class="cardstyle">
               <template is="dom-if" if="{{cardHasLink(card)}}">
                 <a href="{{card.url}}" target="_blank" style="text-decoration: initial;color: black"><div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div></a><br />
                 <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0px; padding: 10px; font-size: 17px;">{{card.title}}</h3></a>
@@ -49,9 +65,9 @@
             </paper-material>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <template is="dom-if" if="{{!getCardAttr(card, lookup, 'hidden')}}">
-              <paper-material elevation="4" style="margin: 12px 7px;background: #fff;display: inline-block;width: 190px;height: 235px;padding-top: 20px">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, lookup, 'html')}}"></div>
+            <template is="dom-if" if="{{!getCardAttr(card.url, lookup, 'hidden')}}">
+              <paper-material elevation="4" class="cardstyle">
+                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card.url, lookup, 'html')}}"></div>
               </paper-material>
             </template>
           </template>
@@ -64,11 +80,11 @@
           <div style="max-width:100%;float:left" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
-                <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+                <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'card')}}">
-              <paper-material elevation="4" style=" margin: 12px 7px; background: #fff; display: inline-block; width: 190px; height: 235px; padding-top: 20px">
+              <paper-material elevation="4" class="cardstyle">
                 <template is="dom-if" if="{{cardHasLink(card)}}">
                   <a href="{{card.url}}" target="_blank" style="text-decoration: initial;color: black"><div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div></a><br />
                   <a href="{{card.url}}" style="text-decoration: initial;color: black"><h3 style="margin: 0px; padding: 10px; font-size: 17px;">{{card.title}}</h3></a>
@@ -82,13 +98,14 @@
               </paper-material>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
-              <paper-material elevation="4" style=" margin: 12px 7px; background: #fff; display: inline-block; width: 190px; height: 235px; padding-top: 20px">
+              <paper-material elevation="4" class="cardstyle">
                 <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
               </paper-material>
             </template>
           </div>
         </template>
       </sortable-list>
+      <update-data update="{{cards}}" data="{{sortMe}}"></update-data>
     </template>
     <template is="dom-if" if="{{selectable}}" restamp>
       <iron-selector multi selected-values="{{selected}}">
@@ -96,18 +113,18 @@
           <div style="max-width:100%;float:left" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
-                <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+                <card-deck title="{{card.title}}" class="cardtitlestyle"></div>></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'card')}}">
-              <paper-material elevation="4" style=" margin: 12px 7px; background: #fff; display: inline-block; width: 190px; height: 235px; padding-top: 20px">
+              <paper-material elevation="4" class="cardstyle">
                 <div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
                 <h3 style="margin: 0px; padding: 10px; font-size: 17px;">{{card.title}}</h3>
                 <p style="margin: 0; padding: 0 13px;">{{card.data}}</p>
               </paper-material>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
-              <paper-material elevation="4" style=" margin: 12px 7px; background: #fff; display: inline-block; width: 190px; height: 235px; padding-top: 20px">
+              <paper-material elevation="4" class="cardstyle">
                 <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
               </paper-material>
             </template>
@@ -121,18 +138,18 @@
         <div style="max-width:100%;float:left" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0">
-              <card-deck title="{{card.title}}" style="max-width:95%;width:190px;height:240px;margin:12px 7px"></card-deck>
+              <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'card')}}">
-            <paper-material elevation="4" style=" margin: 12px 7px; background: #fff; display: inline-block; width: 190px; height: 235px; padding-top: 20px">
+            <paper-material elevation="4" class="cardstyle">
               <div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{card.image}});background-repeat: no-repeat;"></div><br />
               <h3 style="margin: 0;padding: 13px;">{{card.title}}</h3>
               <p style="margin: 0;padding: 0 13px;">{{card.data}}</p>
             </paper-material>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <paper-material elevation="4" style=" margin: 12px 7px; background: #fff; display: inline-block; width: 190px; height: 235px; padding-top: 20px">
+            <paper-material elevation="4" class="cardstyle">
               <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
             </paper-material>
           </template>
@@ -152,7 +169,6 @@
     is: "card-display",
     properties: {
       cards: {notify: true},
-      lookup:{value: {}},
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
@@ -162,15 +178,13 @@
     getCard: function(index, cards){
       return cards[index]
     },
-    getCardAttr: function(card, lookup, attr){
-      card = lookup[card.url] || card
-      
+    getCardAttr: function(index, cards, attr){
       if (attr === "html") {
-        return this.getHtml(card)
+        return this.getHtml(cards[index])
       } else if (attr === "hidden") {
-        return !!card.hidden
+        return !!cards[index][attr]
       } else {
-        return card[attr]
+        return cards[index][attr]
       }
     },
     getHtml: function(card) {
@@ -187,15 +201,6 @@
       return output
     },
     getVeiwable: function(selectable, pickable, sortable) {
-      if (selectable || pickable) {
-        this.sortable = false
-      }
-      if (sortable || pickable) {
-        this.selectable = false
-      }
-      if (selectable || sortable) {
-        this.pickable = false
-      }
       return !(selectable || pickable || sortable)
     },
     cardHasLink: function(card) {
