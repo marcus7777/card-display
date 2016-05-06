@@ -55,7 +55,7 @@
             </paper-material>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <template is="dom-if" if="{{!getCardAttr(card.url, lookup, 'hidden')}}">
+            <template is="dom-if" if="!{{getCardAttr(card.url, lookup, 'hidden')}}">
               <paper-material elevation="4" style="
     margin: 12px 7px;
     background: #fff;
