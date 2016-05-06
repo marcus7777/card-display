@@ -49,9 +49,9 @@
             </paper-material>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <template is="dom-if" if="!{{getCardAttr(card.url, lookup, 'hidden')}}">
+            <template is="dom-if" if="!{{getCardAttr(card, lookup, 'hidden')}}">
               <paper-material elevation="4" style="margin: 12px 7px;background: #fff;display: inline-block;width: 190px;height: 235px;padding-top: 20px">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card.url, lookup, 'html')}}"></div>
+                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, lookup, 'html')}}"></div>
               </paper-material>
             </template>
           </template>
@@ -189,6 +189,7 @@
     is: "card-display",
     properties: {
       cards: {notify: true},
+      lookup:{value: {}}
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
@@ -198,13 +199,15 @@
     getCard: function(index, cards){
       return cards[index]
     },
-    getCardAttr: function(index, cards, attr){
+    getCardAttr: function(card, lookup, attr){
+      card = lookup[card.url] || card
+      
       if (attr === "html") {
-        return this.getHtml(cards[index])
+        return this.getHtml(card)
       } else if (attr === "hidden") {
-        return !!cards[index][attr]
+        return !!card.hidden
       } else {
-        return cards[index][attr]
+        return card[attr]
       }
     },
     getHtml: function(card) {
