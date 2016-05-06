@@ -233,6 +233,15 @@
       return output
     },
     getVeiwable: function(selectable, pickable, sortable) {
+      if (selectable || pickable) {
+        this.sortable = false
+      }
+      if (sortable || pickable) {
+        this.selectable = false
+      }
+      if (selectable || sortable) {
+        this.pickable = false
+      }
       return !(selectable || pickable || sortable)
     },
     cardHasLink: function(card) {
