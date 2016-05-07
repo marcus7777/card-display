@@ -167,7 +167,7 @@
       if (isA === "deck") {
         return card.url.split(":")[0] === "deck"
       } else {
-        return true
+        return card.url.split(":")[0] !== "deck"
       }
     },
     openDeck: function(e){
