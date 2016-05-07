@@ -158,7 +158,7 @@
       if (card.data) {
         output = card.data + ""
       } else {
-        output = '<div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{image}});background-repeat:no-repeat"></div><br><h3 style="margin:0px;padding:10px;font-size: 17px;">{{title}}</h3>'
+        output = '<a href="{{url}}"></div><div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{image}});background-repeat:no-repeat"></div><br><h3 style="margin:0px;padding:10px;font-size: 17px;">{{title}}</h3></a>'
       }
       for (var attr in card) {
         if (attr !== "data") {
