@@ -22,7 +22,7 @@
         margin: -150px 88px;
       }
       .iron-selected paper-fab {
-        background: red;
+        background: var(--accent-color);
       }
       .cardstyle {
         margin: 12px 7px; 
@@ -45,6 +45,16 @@
       /*.cardtitlecontainer {
         margin: 5px 0;
       }*/
+      #deckbutton {
+        float: left;
+        width: 100%;
+      }
+      #deckbutton paper-button {
+        background: var(--accent-color);
+        color: #fff;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
       
     </style>
     
@@ -107,7 +117,7 @@
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div class="cardcontainer" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div class="cardtitlecontainer>
+            <div class="cardtitlecontainer">
               <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
             </div>
           </template>
@@ -120,9 +130,12 @@
         </div>
       </template>
     </template>
-    <paper-dialog id="dialDeck">
+    <paper-dialog id="dialDeck" modal >
       <template is="dom-if" if="{{deck}}" restamp>
         <card-display cards="{{deck}}" lookup="{{lookup}}"></card-display>
+      <div id="deckbutton">
+        <paper-button dialog-confirm autofocus>Close</paper-button>
+      </div>
       </template>
     </paper-dialog>  
   </template>
