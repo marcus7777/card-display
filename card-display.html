@@ -32,6 +32,12 @@
         height: 235px; 
         padding-top: 20px
       }
+      .cardtitlestyle {
+        max-width:95%;
+        width:200px;
+        height:240px;
+        margin:12px 7px;
+      }
     </style>
     
     <template is="dom-if" if="{{veiwable}}" restamp>
@@ -39,7 +45,7 @@
         <div style="max-width:45%;float:left;heigth:250px" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0" on-tap="openDeck" data-index="{{index}}">
-              <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+              <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -58,7 +64,7 @@
           <div style="max-width:100%;float:left" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
-                <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+                <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -76,7 +82,7 @@
           <div style="max-width:100%;float:left" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div style="margin: 5px 0">
-                <card-deck title="{{card.title}}" style="max-width:95%;width:200px;height:240px;margin:12px 7px"></card-deck>
+                <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -94,7 +100,7 @@
         <div style="max-width:100%;float:left" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div style="margin: 5px 0">
-              <card-deck title="{{card.title}}" style="max-width:95%;width:190px;height:240px;margin:12px 7px"></card-deck>
+              <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
