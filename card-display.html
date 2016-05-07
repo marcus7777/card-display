@@ -32,7 +32,7 @@
         height: 235px; 
         padding-top: 20px
       }
-      .cardtitlestyle {
+      .deck {
         /*max-width:95%;*/
         /*width:200px;*/
         /*height:240px;*/
@@ -40,7 +40,8 @@
       }
       .cardcontainer {
         /*max-width:100%;*/
-        float:left;
+        /*float:left;*/
+        display: inline;
       }
       /*.cardtitlecontainer {
         margin: 5px 0;
@@ -55,7 +56,11 @@
         margin-bottom: 20px;
         font-weight: 500;
       }
-      
+      paper-dialog {
+        background: none;
+        box-shadow: none;
+      }
+
     </style>
     
     <template is="dom-if" if="{{veiwable}}" restamp>
@@ -63,7 +68,7 @@
         <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div class="cardtitlecontainer" on-tap="openDeck" data-index="{{index}}">
-              <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
+              <card-deck title="{{card.title}}" class="deck"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -82,7 +87,7 @@
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div class="cardtitlecontainer">
-                <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
+                <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -100,7 +105,7 @@
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
               <div class="cardtitlecontainer>
-                <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
+                <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -118,7 +123,7 @@
         <div class="cardcontainer" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
             <div class="cardtitlecontainer">
-              <card-deck title="{{card.title}}" class="cardtitlestyle"></card-deck>
+              <card-deck title="{{card.title}}" class="deck"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
@@ -171,7 +176,7 @@
       if (card.data) {
         output = card.data + ""
       } else {
-        output = '<a href="{{url}}"></div><div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{image}});background-repeat:no-repeat"></div><br><h3 style="margin:0px;padding:10px;font-size: 17px;">{{title}}</h3></a>'
+        output = '<a href="{{url}}"></div><div style="max-width:100%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px;background-image:url({{image}});background-repeat:no-repeat"></div><br><h3 style="margin:0px;padding:10px;font-size: 17px;"><a style="text-decoration: none;">{{title}}</h3></a>'
       }
       for (var attr in card) {
         if (attr !== "data") {
