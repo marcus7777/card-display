@@ -107,7 +107,7 @@
         <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-              <div class="cardtitlecontainer>
+              <div class="cardtitlecontainer">
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
