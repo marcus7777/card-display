@@ -154,7 +154,7 @@
       return cards[index]
     },
     getCardAttr: function(card, shared, attr){
-      card = shared[this.hash(card.url)] || card
+      card = shared[this.hash(card.url)].card || card
       
       if (attr === "html") {
         return this.getHtml(card)
