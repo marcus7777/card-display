@@ -69,9 +69,9 @@
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <template is="dom-if" if="{{!getCardAttr(card, lookup, 'hidden')}}">
-              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, lookup, 'title')}}">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, lookup, 'html')}}"></div>
+            <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
+              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, shared, 'title')}}">
+                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, shared, 'html')}}"></div>
               </paper-material>
             </template>
           </template>
@@ -148,7 +148,7 @@
     is: "card-display",
     properties: {
       cards: {notify: true},
-      lookup:{value: {}},
+      shared:{value: {}},
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
@@ -158,8 +158,8 @@
     getCard: function(index, cards){
       return cards[index]
     },
-    getCardAttr: function(card, lookup, attr){
-      card = lookup[this.hash(card.url)] || card
+    getCardAttr: function(card, shared, attr){
+      card = shared[this.hash(card.url)] || card
       
       if (attr === "html") {
         return this.getHtml(card)
