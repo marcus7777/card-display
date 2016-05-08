@@ -1,5 +1,6 @@
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../sortable-list/sortable-list.html">
+<link rel="import" href="../mediator-data/mediator-data.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../update-data/update-data.html">
@@ -53,21 +54,19 @@
         background: #fff;
       }
 
-
     </style>
-    
     <template is="dom-if" if="{{veiwable}}" restamp>
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div class="cardtitlecontainer" on-tap="openDeck" data-index="{{index}}">
+            <div on-tap="openDeck" data-index="{{index}}">
               <card-deck title="{{card.title}}" class="deck"></card-deck>
             </div>
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <template is="dom-if" if="{{!getCardAttr(card, lookup, 'hidden')}}">
-              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, lookup, 'title')}}">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, lookup, 'html')}}"></div>
+            <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
+              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, shared, 'title')}}">
+                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, shared, 'html')}}"></div>
               </paper-material>
             </template>
           </template>
@@ -79,7 +78,7 @@
         <template id="cardsS" is="dom-repeat" items="{{sortMe}}" as="card" observe="title data">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-              <div class="cardtitlecontainer">
+              <div>
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
@@ -97,7 +96,7 @@
         <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-              <div class="cardtitlecontainer">
+              <div>
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
@@ -115,7 +114,7 @@
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div class="cardcontainer" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div class="cardtitlecontainer">
+            <div>
               <card-deck title="{{card.title}}" class="deck"></card-deck>
             </div>
           </template>
@@ -135,7 +134,8 @@
           <paper-button dialog-confirm autofocus>Close</paper-button>
         </div>
       </template>
-    </paper-dialog>  
+    </paper-dialog>
+    <mediator-data id="mediatorData"></mediator-data>
   </template>
 </dom-module>
 <script>
@@ -143,7 +143,7 @@
     is: "card-display",
     properties: {
       cards: {notify: true},
-      lookup:{value: {}},
+      shared:{value: {}},
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
@@ -153,8 +153,8 @@
     getCard: function(index, cards){
       return cards[index]
     },
-    getCardAttr: function(card, lookup, attr){
-      card = lookup[card.url] || card
+    getCardAttr: function(card, shared, attr){
+      card = shared[this.hash(card.url)] || card
       
       if (attr === "html") {
         return this.getHtml(card)
@@ -163,6 +163,9 @@
       } else {
         return card[attr]
       }
+    },
+    hash: function(it) {
+      return this.$.mediatorData.hash(it)
     },
     getHtml: function(card) {
       var output = ""
@@ -193,11 +196,8 @@
       }
       return !(selectable || pickable || sortable)
     },
-    cardHasLink: function(card) {
-      return !(card.url.split(":")[0] === "user")
-    },
     isCard: function(card, isA){
-      if (isA === "deck") {
+      if (isA === "deck" && card.hasOwnProperty("url")) {
         return card.url.split(":")[0] === "deck"
       } else {
         return card.url.split(":")[0] !== "deck"
