@@ -18,7 +18,7 @@
       .iron-selected paper-fab {background: var(--accent-color)}
       .cardcontainer {float: left;display: block;height: 220px;width: 167px;margin: 6px}
       #deckbutton {float: left;width: 100%}
-      #deckbutton paper-button {background: var(--accent-color);color: #fff;margin-bottom: 20px;font-weight: 500}
+      #deckbutton paper-button {background: var(--accent-color)}
       paper-dialog {background: none;box-shadow: none}
       paper-material {width: 100%;height: 100%;background: #fff}
     </style>
@@ -97,7 +97,7 @@
     <paper-dialog id="dialDeck" modal >
       <template is="dom-if" if="{{deck}}" restamp>
         <card-display cards="{{deck}}" lookup="{{lookup}}"></card-display>
-        <div id="deckbutton">
+        <div id="deckbutton" class="buttons">
           <paper-button dialog-confirm autofocus>Close</paper-button>
         </div>
       </template>
