@@ -76,7 +76,7 @@
           </template>
           <template is="dom-if" if="{{isCard(card,'custom')}}">
             <template is="dom-if" if="{{!getCardAttr(card, lookup, 'hidden')}}">
-              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, lookup, 'title'}}")>
+              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, lookup, 'title')}}">
                 <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, lookup, 'html')}}"></div>
               </paper-material>
             </template>
