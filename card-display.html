@@ -64,7 +64,7 @@
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div class="cardtitlecontainer" on-tap="openDeck" data-index="{{index}}">
+            <div on-tap="openDeck" data-index="{{index}}">
               <card-deck title="{{card.title}}" class="deck"></card-deck>
             </div>
           </template>
@@ -83,7 +83,7 @@
         <template id="cardsS" is="dom-repeat" items="{{sortMe}}" as="card" observe="title data">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-              <div class="cardtitlecontainer">
+              <div>
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
@@ -101,7 +101,7 @@
         <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-              <div class="cardtitlecontainer">
+              <div>
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
@@ -119,7 +119,7 @@
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
         <div class="cardcontainer" on-tap="picked" data-index="{{index}}">
           <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div class="cardtitlecontainer">
+            <div>
               <card-deck title="{{card.title}}" class="deck"></card-deck>
             </div>
           </template>
