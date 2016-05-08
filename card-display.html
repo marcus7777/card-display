@@ -24,20 +24,20 @@
     </style>
     <template is="dom-if" if="{{veiwable}}" restamp>
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
-        <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
-          <template is="dom-if" if="{{isCard(card,'deck')}}">
-            <div on-tap="openDeck" data-index="{{index}}">
-              <card-deck title="{{card.title}}" class="deck"></card-deck>
-            </div>
-          </template>
-          <template is="dom-if" if="{{isCard(card,'custom')}}">
-            <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
+        <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
+          <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
+            <template is="dom-if" if="{{isCard(card,'deck')}}">
+              <div on-tap="openDeck" data-index="{{index}}">
+                <card-deck title="{{card.title}}" class="deck"></card-deck>
+              </div>
+            </template>
+            <template is="dom-if" if="{{isCard(card,'custom')}}">
               <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, shared, 'title')}}">
                 <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, shared, 'html')}}"></div>
               </paper-material>
             </template>
-          </template>
-        </div>
+          </div>
+        </template>
       </template>
     </template>
     <template is="dom-if" if="{{sortable}}" restamp>
