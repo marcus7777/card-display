@@ -196,8 +196,12 @@
       return !(selectable || pickable || sortable)
     },
     isCard: function(card, isA){
-      if (isA === "deck" && card.hasOwnProperty("url")) {
-        return card.url.split(":")[0] === "deck"
+      if (card.hasOwnProperty("url")) {
+        if (isA === "deck") {
+          return card.url.split(":")[0] === "deck"
+        } else {
+          return card.url.split(":")[0] !== "deck"
+        }
       } else {
         return true
       }
