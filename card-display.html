@@ -17,9 +17,9 @@
 
       paper-fab {
         position: absolute;
-        background: gray;
-        margin: -150px 88px;
-        color: var(--button-background-color);
+        background:  var(--button-not-selected-color);
+        margin: -150px 56px;
+        color: var(--button-color);
       }
       .iron-selected paper-fab {
         background: var(--accent-color);
@@ -37,7 +37,7 @@
       }
       #deckbutton paper-button {
         background: var(--accent-color);
-        color: #fff;
+        color: var(--button-color);
         margin-bottom: 20px;
         font-weight: 500;
       }
@@ -103,7 +103,7 @@
                 <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
               </paper-material>
             </template>
-            <paper-fab mini icon="done"></paper-fab>
+            <paper-fab icon="done"></paper-fab>
           </div>
         </template>
       </iron-selector>
