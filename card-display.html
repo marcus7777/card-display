@@ -148,9 +148,24 @@
     getCard: function(index, cards){
       return cards[index]
     },
+    addResponsesToCard: function(responses, card){
+      for (var uidHash in responses) { 
+        // TODO  import the function that deals with the responses from the new survey or other element
+        var text = responses[uidHash].details.text.split(':')[0].toUpperCase()
+        if (text === card.One.toUpperCase()) {
+          card.ones++
+        } else {
+          card.twos++
+        }
+      }
+      return card
+    },
     getCardAttr: function(card, shared, attr){
       if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("card")) {
         card = shared[this.hash(card.url)].card
+      }
+      if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("responses")) {
+        card = this.addResponsesToCard(shared[this.hash(card.url)]).responses, card)
       }
       if (attr === "html") {
         return this.getHtml(card)
