@@ -14,7 +14,6 @@
 <dom-module id="card-display">
   <template>
     <style>
-
       paper-fab {
         position: absolute;
         background: gray;
@@ -50,8 +49,6 @@
         height: 100%;
         background: #fff;
       }
-
-
     </style>
     <template is="dom-if" if="{{veiwable}}" restamp>
       <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
