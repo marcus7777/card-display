@@ -199,7 +199,7 @@
       if (isA === "deck" && card.hasOwnProperty("url")) {
         return card.url.split(":")[0] === "deck"
       } else {
-        return card.url.split(":")[0] !== "deck"
+        return false
       }
     },
     openDeck: function(e){
