@@ -165,7 +165,7 @@
         card = shared[this.hash(card.url)].card
       }
       if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("responses")) {
-        card = this.addResponsesToCard(shared[this.hash(card.url)]).responses, card)
+        card = this.addResponsesToCard(shared[this.hash(card.url)].responses, card)
       }
       if (attr === "html") {
         return this.getHtml(card)
