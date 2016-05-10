@@ -153,6 +153,12 @@
       }
       for (var i = 0; i < cards.length; i++) {
         console.log(cards[i])
+        if (card.url === this.hash(this.uid+card.Question)) {
+          if (card.face) {
+            cards[i].data = cards[i].face
+            cards[i].hidden = false
+          }
+        }
         cards[i].hidden = this.getCardAttr(cards[i], shared, 'hidden')
         cards[i].html = this.getHtml(cards[i])
       }
@@ -195,7 +201,7 @@
     hash: function(it) {
       return this.$.mediatorData.hash(it)
     },
-    getHtml: function(card) {
+    getHtml: function(data) {
       var output = ""
       if (card.data) {
         output = card.data + ""
