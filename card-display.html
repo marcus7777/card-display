@@ -157,7 +157,6 @@
         } else {
           card.twos++
         }
-        card.hidden = false
       }
       return card
     },
@@ -171,7 +170,11 @@
       if (attr === "html") {
         return this.getHtml(card)
       } else if (attr === "hidden") {
-        return !!card.hidden
+        if (card.url === this.hash(this.uid+card.Question)) {
+          return false
+        } else {
+          return !!card.hidden
+        }
       } else {
         return card[attr]
       }
