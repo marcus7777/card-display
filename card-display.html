@@ -52,7 +52,7 @@
       }
     </style>
     <template is="dom-if" if="{{veiwable}}" restamp>
-      <template is="dom-repeat" items="{{veiwableCards}}" as="card" observe="title data">
+      <template is="dom-repeat" items="{{hand}}" as="card" observe="title data">
         <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
@@ -61,8 +61,8 @@
               </div>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
-              <paper-material elevation="4" class="cardstyle" title$="{{getCardAttr(card, shared, 'title')}}">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getCardAttr(card, shared, 'html')}}"></div>
+              <paper-material elevation="4" class="cardstyle" title="{{card.title}}">
+                <div data-index="{{index}}" inner-h-t-m-l="{{card.html)}}"></div>
               </paper-material>
             </template>
           </div>
@@ -145,11 +145,16 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
-      veiwableCards: {computed: "getVeiwableCards(cards, shared)"}
+      hand: {computed: "getHand(cards, shared)"}
     },
-    getVeiwableCards: function(cards, shared) {
+    getHand: function(cards, shared) {
       for (var sharedIndex in shared) {
         console.log(shared[sharedIndex])
+      }
+      for (var i = 0; i < cards.length; i++) {
+        console.log(cards[i])
+        cards[i].hidden = this.getCardAttr(cards[i], shared, 'hidden')
+        cards[i].html = this.getCardAttr(cards[i], shared, 'html')
       }
       return cards
     },
