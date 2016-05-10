@@ -147,7 +147,8 @@
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
       hand: {computed: "getHand(cards, shared)"}
     },
-    getHand: function(cards, shared) {
+    getHand: function(_cards, shared) {
+      var cards = JSON.parse(JSON.stringify(_cards))
       for (var sharedIndex in shared) {
         console.log(shared[sharedIndex])
       }
