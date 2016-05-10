@@ -60,7 +60,7 @@
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
-            <template is="dom-if" if="{{card.html}}">
+            <template is="dom-if" if="{{!isCard(card,'deck')}}">
               <paper-material elevation="4" class="cardstyle" title="{{card.title}}">
                 <div data-index="{{index}}" inner-h-t-m-l="{{card.html}}"></div>
               </paper-material>
