@@ -51,7 +51,7 @@
       }
     </style>
     <template is="dom-if" if="{{veiwable}}" restamp>
-      <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
+      <template is="dom-repeat" items="{{veiwableCards}}" as="card" observe="title data">
         <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
           <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
@@ -143,7 +143,14 @@
       selectable: {type: Boolean, value: false},
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
-      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"}
+      veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
+      veiwableCards: {computed: "getVeiwableCards(cards, shared)"}
+    },
+    getVeiwableCards: function(cards, shared) {
+      for (var sharedIndex in shared) {
+        console.log(shared[sharedIndex])
+      }
+      return cards
     },
     getCard: function(index, cards){
       return cards[index]
