@@ -60,7 +60,7 @@
                 <card-deck title="{{card.title}}" class="deck"></card-deck>
               </div>
             </template>
-            <template is="dom-if" if="{{isCard(card,'custom')}}">
+            <template is="dom-if" if="{{card.html}}">
               <paper-material elevation="4" class="cardstyle" title="{{card.title}}">
                 <div data-index="{{index}}" inner-h-t-m-l="{{card.html)}}"></div>
               </paper-material>
@@ -154,7 +154,7 @@
       for (var i = 0; i < cards.length; i++) {
         console.log(cards[i])
         cards[i].hidden = this.getCardAttr(cards[i], shared, 'hidden')
-        cards[i].html = this.getCardAttr(cards[i], shared, 'html')
+        cards[i].html = this.getHtml(card)
       }
       return cards
     },
