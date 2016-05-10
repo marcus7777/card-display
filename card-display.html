@@ -152,8 +152,8 @@
       }
       for (var i = 0; i < cards.length; i++) {
         console.log(cards[i])
-        cards[i].hidden = this.getCardAttr(cards[i], 'hidden')
-        cards[i].html = this.getCardAttr(cards[i], 'html')
+        cards[i].hidden = this.getCardAttr(cards[i], shared, 'hidden')
+        cards[i].html = this.getCardAttr(cards[i], shared, 'html')
       }
       return cards
     },
