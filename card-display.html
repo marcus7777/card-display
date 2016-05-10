@@ -152,12 +152,12 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
-      hand: {computed: "getHand(cards, shared)"}
+      hand: {computed: "getHand(cards.*, shared.*)"}
     },
     getHand: function(_cards, shared) {
-      var cards = JSON.parse(JSON.stringify(_cards))
-      for (var sharedIndex in shared) {
-        console.log(shared[sharedIndex])
+      var cards = JSON.parse(JSON.stringify(_cards.base))
+      for (var sharedIndex in shared.base) {
+        console.log(shared.base[sharedIndex])
       }
       for (var i = 0; i < cards.length; i++) {
         console.log(cards[i])
@@ -167,7 +167,7 @@
             cards[i].hidden = false
           }
         }
-        cards[i].hidden = this.getCardAttr(cards[i], shared, 'hidden')
+        cards[i].hidden = this.getCardAttr(cards[i], shared.base, 'hidden')
         cards[i].html = this.getHtml(cards[i])
       }
       return cards
