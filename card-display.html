@@ -144,7 +144,7 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
-      hand: {computed: "getHard(cards, shared)"}
+      hand: {computed: "getHand(cards, shared)"}
     },
     getHand: function(cards, shared) {
       for (var sharedIndex in shared) {
