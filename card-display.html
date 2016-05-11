@@ -201,8 +201,8 @@
       return card
     },
     getCardAttr: function(card, shared, attr){
-      if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("card")) {
-        card = shared[this.hash(card.url)].card
+      if (shared.hasOwnProperty(this.hash(card.url))) {
+        card = shared[this.hash(card.url)]
       }
       if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("_mark")) {
         card = this.addResponsesToCard(shared[this.hash(card.url)]._mark, card)
