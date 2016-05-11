@@ -56,7 +56,7 @@
         overflow: hidden;
       }
     </style>
-    <div class="container"></div>
+    <div class="container">
       <template is="dom-if" if="{{veiwable}}" restamp>
         <template is="dom-repeat" items="{{hand}}" as="card" observe="title data">
           <template is="dom-if" if="{{!getCardAttr(card, shared, 'hidden')}}">
