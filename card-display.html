@@ -187,9 +187,11 @@
       return cards[index]
     },
     addResponsesToCard: function(responses, card){
+      // TODO  import the function that deals with the responses from the new survey or other element
+      card.ones = 0
+      card.twos = 0
       for (var uidHash in responses) { 
-        // TODO  import the function that deals with the responses from the new survey or other element
-        var text = responses[uidHash].details.text.split(':')[0].toUpperCase()
+        var text = responses[uidHash].text.toUpperCase()
         if (text === card.One.toUpperCase()) {
           card.ones++
         } else {
@@ -202,8 +204,8 @@
       if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("card")) {
         card = shared[this.hash(card.url)].card
       }
-      if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("responses")) {
-        card = this.addResponsesToCard(shared[this.hash(card.url)].responses, card)
+      if (shared.hasOwnProperty(this.hash(card.url)) && shared[this.hash(card.url)].hasOwnProperty("_mark")) {
+        card = this.addResponsesToCard(shared[this.hash(card.url)]._mark, card)
       }
       if (attr === "html") {
         return this.getHtml(card)
