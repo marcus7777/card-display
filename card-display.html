@@ -167,11 +167,13 @@
     },
     getHand: function(_cards, shared) {
       var cards = JSON.parse(JSON.stringify(_cards.base))
-      for (var sharedIndex in shared.base) {
-        console.log(shared.base[sharedIndex])
-      }
       for (var i = 0; i < cards.length; i++) {
         console.log(cards[i])
+        if (shared.base[this.hash(cards[i].url)]) {
+          for (var attr in shared.base[this.hash(cards[i].url)]) {
+            cards[i][attr] = shared.base[this.hash(cards[i].url)][attr]
+          }
+        }
         if (cards[i].url === this.hash(this.uid+cards[i].Question)) {
           if (cards[i].face) {
             cards[i].data = cards[i].face
