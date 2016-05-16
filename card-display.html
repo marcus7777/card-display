@@ -172,22 +172,31 @@
     getHand: function(_cards, shared) {
       var cards = JSON.parse(JSON.stringify(_cards.base))
       for (var i = 0; i < cards.length; i++) {
-        console.log(cards[i])
-        if (shared.base[this.hash(cards[i].url)]) {
-          for (var attr in shared.base[this.hash(cards[i].url)]) {
-            cards[i][attr] = shared.base[this.hash(cards[i].url)][attr]
+        if (cards[i].url) {
+          if (shared.base[this.hash(cards[i].url)]) {
+            for (var attr in shared.base[this.hash(cards[i].url)]) {
+              cards[i][attr] = shared.base[this.hash(cards[i].url)][attr]
+            }
           }
-        }
-        if (cards[i].url === this.hash(this.uid+cards[i].Question)) {
-          if (cards[i].face) {
-            cards[i].data = cards[i].face
-            cards[i].hidden = false
+          if (cards[i].url === this.hash(this.uid+cards[i].Question)) {
+            if (cards[i].face) {
+              cards[i].data = cards[i].face
+              cards[i].hidden = false
+            }
           }
+          cards[i].hidden = this.getCardAttr(cards[i], shared.base, 'hidden')
+          cards[i].html = this.getHtml(cards[i])
+        } else {
+          cards[i].hidden = true
         }
-        cards[i].hidden = this.getCardAttr(cards[i], shared.base, 'hidden')
-        cards[i].html = this.getHtml(cards[i])
       }
-      return cards
+      var hand = []
+      for (var i = 0; i < cards.length; i++) {
+        if (!cards[i].hidden) {
+          hand.push(cards[i])
+        }
+      }
+      return hand
     },
     getCard: function(index, cards){
       return cards[index]
