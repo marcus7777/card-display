@@ -91,7 +91,7 @@
       </template>
       <template is="dom-if" if="{{selectable}}" restamp>
         <iron-selector multi selected-values="{{selected}}">
-          <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
+          <template is="dom-repeat" items="{{selectableCards}}" as="card" observe="title data">
             <template is="dom-if" if="{{!card.hidden}}">
               <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
                 <template is="dom-if" if="{{isCard(card,'deck')}}">
