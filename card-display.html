@@ -129,12 +129,7 @@
           </div>
         </template>
       </template>
-      <template is="dom-if" if="{{pad}}">
-        <div class="filler"></div>
-        <div class="filler"></div>
-        <div class="filler"></div>
-        <div class="filler"></div>
-        <div class="filler"></div>  
+      <template is="dom-repeat" items="{{pad}}">
         <div class="filler"></div>
       </template>
     </div>
@@ -154,7 +149,7 @@
     is: "card-display",
     properties: {
       cards: {notify: true},
-      pad: {computed: "worstPadding(cards.length)"},
+      pad: {computed: "getPadding(cards.length)"},
       shared:{value: {}},
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
@@ -163,8 +158,23 @@
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
       hand: {computed: "getHand(cards.*, shared.*)"}
     },
-    worstPadding: function(num) {
-      return num > 7
+    getPadding: function(num) {
+      switch(num) {
+        case 1:
+        case 2:
+        case 4:
+        case 6:
+          return []
+          break;
+        case 3:
+        case 5:
+        case 7:
+          return [1]
+          break;
+        default:
+        return Array(7)
+      }
+      
     },
     getHand: function(_cards, shared) {
       var cards = JSON.parse(JSON.stringify(_cards.base))
