@@ -40,11 +40,9 @@
         width: 167px;
         margin: 0px 6px 0px 0px;
       }
-      #deckbutton paper-button {
+      paper-button {
         background: var(--accent-color);
         color: var(--button-color);
-        margin-bottom: 20px;
-        font-weight: 500;
       }
       paper-dialog {
         background: rgba(255,255,255,.7);
@@ -80,9 +78,7 @@
           <template id="cardsS" is="dom-repeat" items="{{sortMe}}" as="card" observe="title data">
             <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
               <template is="dom-if" if="{{isCard(card,'deck')}}">
-                <div>
-                  <card-deck title="{{card.title}}" class="deck"></card-deck>
-                </div>
+                <card-deck title="{{card.title}}" class="deck"></card-deck>
               </template>
               <template is="dom-if" if="{{isCard(card,'custom')}}">
                 <paper-material elevation="4" class="cardstyle">
@@ -98,9 +94,7 @@
           <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
             <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
               <template is="dom-if" if="{{isCard(card,'deck')}}">
-                <div>
-                  <card-deck title="{{card.title}}" class="deck"></card-deck>
-                </div>
+                <card-deck title="{{card.title}}" class="deck"></card-deck>
               </template>
               <template is="dom-if" if="{{isCard(card,'custom')}}">
                 <paper-material elevation="4" class="cardstyle">
@@ -116,9 +110,7 @@
         <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
           <div class="cardcontainer" on-tap="picked" data-index="{{index}}">
             <template is="dom-if" if="{{isCard(card,'deck')}}">
-              <div>
-                <card-deck title="{{card.title}}" class="deck"></card-deck>
-              </div>
+              <card-deck title="{{card.title}}" class="deck"></card-deck>
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
               <paper-material elevation="4" class="cardstyle">
@@ -136,7 +128,7 @@
     <paper-dialog id="dialDeck" modal >
       <template is="dom-if" if="{{deck}}" restamp>
         <card-display cards="{{deck}}" lookup="{{lookup}}"></card-display>
-        <div id="deckbutton" class="buttons">
+        <div class="buttons">
           <paper-button dialog-confirm autofocus>Close</paper-button>
         </div>
       </template>
