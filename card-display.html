@@ -159,6 +159,7 @@
     is: "card-display",
     properties: {
       cards: {notify: true},
+      pad: {computed: "worstPadding(cards.length)"},
       shared:{value: {}},
       selected: {notify: true},
       selectable: {type: Boolean, value: false},
@@ -166,6 +167,9 @@
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
       hand: {computed: "getHand(cards.*, shared.*)"}
+    },
+    worstPadding: function(num) {
+      return num > 7
     },
     getHand: function(_cards, shared) {
       var cards = JSON.parse(JSON.stringify(_cards.base))
