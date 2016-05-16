@@ -150,7 +150,8 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
-      hand: {computed: "getHand(cards.*, shared.*)"}
+      hand: {computed: "getHand(cards.*, shared.*)"},
+      selectableCards: {computed: "getSelectableCards(cards.*)"}
     },
     getPadding: function(num) {
       switch(num) {
@@ -170,6 +171,16 @@
         return Array(7)
       }
       
+    },
+    getSelectableCards: function(_cards){
+      var cards = JSON.parse(JSON.stringify(_cards.base))
+      var hand = []
+      for (var i = 0; i < cards.length; i++) {
+        if (!cards[i].hidden) {
+          hand.push(cards[i])
+        }
+      }
+      return hand
     },
     getHand: function(_cards, shared) {
       var cards = JSON.parse(JSON.stringify(_cards.base))
