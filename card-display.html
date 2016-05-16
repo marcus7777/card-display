@@ -176,7 +176,7 @@
       var cards = JSON.parse(JSON.stringify(_cards.base))
       var hand = []
       for (var i = 0; i < cards.length; i++) {
-        if (!cards[i].hidden) {
+        if (cards[i].url) {
           hand.push(cards[i])
         }
       }
