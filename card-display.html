@@ -92,17 +92,19 @@
       <template is="dom-if" if="{{selectable}}" restamp>
         <iron-selector multi selected-values="{{selected}}">
           <template is="dom-repeat" items="{{cards}}" as="card" observe="title data">
-            <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
-              <template is="dom-if" if="{{isCard(card,'deck')}}">
-                <card-deck title="{{card.title}}" class="deck"></card-deck>
-              </template>
-              <template is="dom-if" if="{{isCard(card,'custom')}}">
-                <paper-material elevation="4" class="cardstyle">
-                  <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
-                </paper-material>
-              </template>
-              <paper-fab icon="done"></paper-fab>
-            </div>
+            <template is="dom-if" if="{{!card.hidden}}">
+              <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
+                <template is="dom-if" if="{{isCard(card,'deck')}}">
+                  <card-deck title="{{card.title}}" class="deck"></card-deck>
+                </template>
+                <template is="dom-if" if="{{isCard(card,'custom')}}">
+                  <paper-material elevation="4" class="cardstyle">
+                    <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
+                  </paper-material>
+                </template>
+                <paper-fab icon="done"></paper-fab>
+              </div>
+            </template>
           </template>
         </iron-selector>
       </template>
