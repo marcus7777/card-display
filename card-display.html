@@ -66,7 +66,7 @@
               </template>
               <template is="dom-if" if="{{!isCard(card,'deck')}}">
                 <paper-material elevation="4" class="cardstyle" title="{{card.title}}">
-                  <div data-index="{{index}}" inner-h-t-m-l="{{card.html}}"></div>
+                  <div data-index="{{index}}" inner-h-t-m-l="{{card._html}}"></div>
                 </paper-material>
               </template>
             </div>
@@ -82,7 +82,7 @@
               </template>
               <template is="dom-if" if="{{isCard(card,'custom')}}">
                 <paper-material elevation="4" class="cardstyle">
-                  <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
+                  <div data-index="{{index}}" inner-h-t-m-l="{{card._html}}"></div>
                 </paper-material>
               </template>
             </div>
@@ -99,7 +99,7 @@
                 </template>
                 <template is="dom-if" if="{{isCard(card,'custom')}}">
                   <paper-material elevation="4" class="cardstyle">
-                    <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
+                    <div data-index="{{index}}" inner-h-t-m-l="{{card._html}}"></div>
                   </paper-material>
                 </template>
                 <paper-fab icon="done"></paper-fab>
@@ -116,7 +116,7 @@
             </template>
             <template is="dom-if" if="{{isCard(card,'custom')}}">
               <paper-material elevation="4" class="cardstyle">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
+                <div data-index="{{index}}" inner-h-t-m-l="{{card._html}}"></div>
               </paper-material>
             </template>
             <paper-fab icon="touch-app"></paper-fab>
@@ -196,7 +196,7 @@
             }
           }
           cards[i].hidden = this.getCardAttr(cards[i], shared.base, 'hidden')
-          cards[i].html = this.getHtml(cards[i])
+          cards[i]._html = this.getHtml(cards[i])
         } else {
           cards[i].hidden = true
         }
@@ -247,13 +247,13 @@
     },
     getHtml: function(card) {
       var output = ""
-      if (card.data) {
-        output = card.data + ""
+      if (card._data) {
+        output = card._data + ""
       } else {
         output = '<a href="{{url}}" target="_blank"><div style="max-width:80%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px; background-image:url({{image}});background-repeat:no-repeat"></div><br><h3 style="margin:0px;padding:10px;font-size: 15px;"><a style="text-decoration: none;">{{title}}</h3></a>'
       }
       for (var attr in card) {
-        if (attr !== "data") {
+        if (attr !== "_data") {
           //replace {{}}
           re = new RegExp("{{"+attr+"}}", "gim")
           output = output.replace(re, card[attr])
