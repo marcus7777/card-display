@@ -245,7 +245,10 @@
     hash: function(it) {
       return this.$.mediatorData.hash(it)
     },
-    getHtml: function(card) {
+    getHtml: function(card, noLink) {
+      if (noLink) {
+        card.url = ""
+      }
       var output = ""
       if (card._data) {
         output = card._data + ""
