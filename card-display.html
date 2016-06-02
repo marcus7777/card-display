@@ -99,7 +99,7 @@
                 </template>
                 <template is="dom-if" if="{{!isCard(card,'deck')}}">
                   <paper-material elevation="4" class="cardstyle">
-                    <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
+                    <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card, true)}}"></div>
                   </paper-material>
                 </template>
                 <paper-fab icon="done"></paper-fab>
@@ -116,7 +116,7 @@
             </template>
             <template is="dom-if" if="{{!isCard(card,'deck')}}">
               <paper-material elevation="4" class="cardstyle">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
+                <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card, true)}}"></div>
               </paper-material>
             </template>
             <paper-fab icon="touch-app"></paper-fab>
