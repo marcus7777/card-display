@@ -116,7 +116,7 @@
             </template>
             <template is="dom-if" if="{{!isCard(card,'deck')}}">
               <paper-material elevation="4" class="cardstyle">
-                <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card, true)}}"></div>
+                <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
               </paper-material>
             </template>
             <paper-fab icon="touch-app"></paper-fab>
@@ -245,10 +245,7 @@
     hash: function(it) {
       return this.$.mediatorData.hash(it)
     },
-    getHtml: function(card, noLink) {
-      if (noLink) {
-        card.url = ""
-      }
+    getHtml: function(card) {
       var output = ""
       if (card._data) {
         output = card._data + ""
@@ -262,7 +259,6 @@
           output = output.replace(re, card[attr])
         }
       }
-      
       return output
     },
     getVeiwable: function(selectable, pickable, sortable) {
