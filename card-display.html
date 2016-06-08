@@ -185,8 +185,40 @@
       }
       return hand
     },
+    layout: function(cards) {
+      var list = {}
+      var hasDeck = false
+      var thatLayout = this
+      cards.forEach(function(card) {
+        if (card.url.startsWith("deck")) {
+          hasDeck = true
+          thatLayout.layout(that.objectToArray(card.data)).forEach(function(card) {
+            list[thatLayout.hash(card.url)] = card
+          })
+        } else {
+          list[thatLayout.hash(card.url)] = card 
+        }
+      })
+      if (hasDeck) {
+        return this.layout(this.objectToArray(list))
+      } else {
+        return this.objectToArray(list)
+      }
+    },
+    objectToArray: function (data) {
+      var output = []
+      if (data) {
+        var keys = Object.keys(data)
+        for (var i = 0; i < keys.length; i++) {
+          if (typeof data[keys[i]] === 'object') {
+            output.push(data[keys[i]])
+          }
+        }
+      }
+      return output
+    },
     getSortByExtOrder: function(_cards, sortByExt, editorExtensionId) {
-      var cards = _cards.base
+      var cards = this.layout(_cards.base)
       if (sortByExt) {
         var toSort = []
         for (var i = 0; i < cards.length; i++) {
