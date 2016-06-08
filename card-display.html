@@ -192,16 +192,16 @@
         for (var i = 0; i < cards.length; i++) {
           toSort.push(cards.url)
         }
-        
+        var thatCardDisplay = this
         // Make a simple request:
         chrome.runtime.sendMessage(editorExtensionId, {toSort: toSort},
           function(response) {
             console.log(url)
             console.log(response)
             if (!response.success) {
-              this.set("sortByExtOrder", [])
+              thatCardDisplay.set("sortByExtOrder", [])
             } else {
-              this.set("sortByExtOrder", [1,2,3])
+              thatCardDisplay.set("sortByExtOrder", [1,2,3])
             }
           }
         )
