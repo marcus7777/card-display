@@ -194,7 +194,7 @@
         }
         var thatCardDisplay = this
         // Make a simple request:
-        chrome.runtime.sendMessage(editorExtensionId, {toSort: toSort},{},
+        chrome.runtime.sendMessage(editorExtensionId, toSort,{},
           function(response) {
             if (response) {
               thatCardDisplay.set("sortByExtOrder", response)
