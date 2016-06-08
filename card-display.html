@@ -190,13 +190,12 @@
       if (sortByExt) {
         var toSort = []
         for (var i = 0; i < cards.length; i++) {
-          toSort.push(cards[i].url)
+          toSort.push({url: cards[i].url,regret: +cards[i].__regret} )
         }
         var thatCardDisplay = this
         // Make a simple request:
         chrome.runtime.sendMessage(editorExtensionId, {toSort: toSort},{},
           function(response) {
-            console.log('chrome.runtime.sendMessage', response)
             if (!response) {
               thatCardDisplay.set("sortByExtOrder", [])
             } else {
@@ -283,7 +282,7 @@
       if (card._data) {
         output = card._data + ""
       } else {
-        output = '<a href="{{url}}" target="_blank"><div style="max-width:80%;background-size: contain;background-position: center;display:inline-block;width:32px;height:32px; background-image:url({{fav}});background-repeat:no-repeat"></div><h3 style="margin:0px;padding:10px;font-size: 15px;">{{title}}</h3><div style="max-width:80%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px; background-image:url({{image}});background-repeat:no-repeat"></div></a>'
+        output = '<div style="max-width:80%;background-size: contain;background-position: center;display:inline-block;width:32px;height:32px; background-image:url({{fav}});background-repeat:no-repeat"></div><h3 style="margin:0px;padding:10px;font-size: 15px;">{{title}}</h3><div style="max-width:80%;background-size: contain;background-position: center;display:inline-block;width:200px;height:147px; background-image:url({{image}});background-repeat:no-repeat"></div>'
       }
       for (var attr in card) {
         if (attr !== "_data") {
