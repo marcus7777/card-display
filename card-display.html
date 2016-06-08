@@ -209,6 +209,7 @@
       var cards = JSON.parse(JSON.stringify(_cards.base))
       if (sortByExtOrder.length) {
         console.log(sortByExtOrder)
+        this.orderArray(sortByExtOrder,cards, "url")
       }
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].url) {
@@ -366,6 +367,20 @@
         selected = e.target.dataIndex
       } 
       this.fire("tapped", {card: this.cards[selected], text: e.target.innerText, tag: e.target.tagName})
+    },
+    orderArray: function (array_with_order, array_to_order, by) {
+      var ordered_array = []
+      var len = array_to_order.length
+      var len_copy = len
+      var index
+      var current
+    
+      for (; len--;) {
+        current = array_to_order[len];
+        index = array_with_order.indexOf(current[by]);
+        ordered_array[index] = current;
+      }
+      Array.prototype.splice.apply(array_to_order, [0, len_copy].concat(ordered_array));
     }
   })
 </script>
