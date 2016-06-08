@@ -150,8 +150,9 @@
       sortable: {type: Boolean, value: false},
       pickable: {type: Boolean, value: false},
       veiwable: {type: Boolean, computed:"getVeiwable(selectable, pickable, sortable)"},
-      hand: {computed: "getHand(cards.*, shared.*, sortByExt, maxCards, editorExtensionId)"},
+      hand: {computed: "getHand(cards.*, shared.*, sortByExtOrder, maxCards)"},
       sortByExt: {type: Boolean, value: false},
+      sortByExtOrder
       maxCards: {type: Number, value: 7},
       editorExtensionId: {type: String, value: "dfcneagmkfhjgefgogpaakjfjknefbdg"},
       selectableCards: {computed: "getSelectableCards(cards.*)"}
@@ -194,20 +195,22 @@
         // Make a simple request:
         chrome.runtime.sendMessage(editorExtensionId, {toSort: toSort},
           function(response) {
+            console.log(url)
+            console.log(response)
             if (!response.success) {
-              console.log(url)
-              console.log(response)
+              this.set("sortByExtOrder", [])
             } else {
-              console.log(url)
-              console.log(response)
+              this.set("sortByExtOrder", [1,2,3])
             }
           }
         )
       }
     },
-    getHand: function(_cards, shared, SortByExtOrder) {
+    getHand: function(_cards, shared, sortByExtOrder, maxCards) {
       var cards = JSON.parse(JSON.stringify(_cards.base))
-
+      if (SortByExtOrder.length) {
+        console.log(SortByExtOrder)
+      }
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].url) {
           if (shared.base[this.hash(cards[i].url)]) {
