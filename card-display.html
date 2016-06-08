@@ -142,7 +142,7 @@
   Polymer({
     is: "card-display",
     properties: {
-      cards: {notify: true, type: Array},
+      cards: {type: Array},
       pad: {computed: "getPadding(cards.length)"},
       shared:{value: {}},
       selected: {type: Array, notify: true},
