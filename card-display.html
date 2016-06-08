@@ -233,10 +233,10 @@
       var hand = []
       for (var i = 0; i < cards.length; i++) {
         if (!cards[i].hidden) {
-          hand.push(cards[i])
-          if (i >= maxCards) {
+          if ((i+1) > maxCards) {
             break
           } 
+          hand.push(cards[i])
         }
       }
 
