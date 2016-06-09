@@ -393,13 +393,13 @@
       for (var i = 0; i < array.length; i++) {
         if (array[i].url === "deck") {
           array[i].data = this.orderArray(order, this.objectToArray(array[i].data), by)
-          var max = 0
+          var min = 100
           for (var di = 0; di < array[i].data.length; di++) {
-            if (max < array[i].data[di].__index) {
-              max = array[i].data[di].__index
+            if (min > array[i].data[di].__index) {
+              min = array[i].data[di].__index
             }
           }
-          array[i].__index = max
+          array[i].__index = min
         } else {
           index = order.indexOf(array[i][by])
           if (index !== -1) {
