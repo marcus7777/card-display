@@ -385,19 +385,30 @@
       } 
       this.fire("tapped", {card: this.cards[selected], text: e.target.innerText, tag: e.target.tagName})
     },
-    orderArray: function (array_with_order, array_to_order, by) {
+    orderArray: function (order, array, by) {
       var ordered_array = []
-      var len = array_to_order.length
-      var len_copy = len
       var index
-      var current
-    
-      for (; len--;) {
-        current = array_to_order[len];
-        index = array_with_order.indexOf(current[by]);
-        ordered_array[index] = current;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i].url === "deck") {
+          array[i].data = this.orderArray(order, this.objectToArray(array[i].data), by)
+          var max = 0
+          for (var di = 0; di < array[i].data.length; di++) {
+            if (max < array[i].data[di].__index) {
+              max = array[i].data[di].__index
+            }
+          }
+          array[i].__index = max
+        } else {
+          index = order.indexOf(array[i][by])
+          if (index !== -1) {
+            array[i].__index = index
+          }
+        }
+        ordered_array.push(array[i])
       }
-      Array.prototype.splice.apply(array_to_order, [0, len_copy].concat(ordered_array));
+      return ordered_array.sort(function(a, b) {
+        return a.__index - b.__index
+      })
     }
   })
 </script>
