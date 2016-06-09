@@ -192,7 +192,7 @@
       cards.forEach(function(card) {
         if (card.url.startsWith("deck")) {
           hasDeck = true
-          thatLayout.layout(that.objectToArray(card.data)).forEach(function(card) {
+          thatLayout.layout(thatLayout.objectToArray(card.data)).forEach(function(card) {
             list[thatLayout.hash(card.url)] = card
           })
         } else {
@@ -356,18 +356,6 @@
       }
     },
     openDeck: function(e){
-      function objectToArray(data) {
-        var output = []
-        if (data) {
-          var keys = Object.keys(data)
-          for (var i = 0; i < keys.length; i++) {
-            if (typeof data[keys[i]] === 'object') {
-              output.push(data[keys[i]])
-            }
-          }
-        }
-        return output
-      }
       var selected
       if (e.target.parentElement.parentElement.hasOwnProperty("dataIndex")) {
         selected = e.target.parentElement.parentElement.dataIndex
@@ -377,7 +365,7 @@
         selected = e.target.dataIndex
       } 
       // get data
-      this.set("deck", objectToArray(this.cards[selected].data))
+      this.set("deck", this.objectToArray(this.cards[selected].data))
       this.$.dialDeck.open()
     },
     picked: function(e){
