@@ -238,7 +238,7 @@
       var cards = {}
       if (sortByExtOrder.length) {
         console.log(sortByExtOrder)
-        cards = this.orderArray(sortByExtOrder,cards, "url")
+        cards = this.orderArray(sortByExtOrder,_cards.base, "url")
       } else {
         cards = JSON.parse(JSON.stringify(_cards.base))
       }
