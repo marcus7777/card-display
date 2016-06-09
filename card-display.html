@@ -235,10 +235,12 @@
       }
     },
     getHand: function(_cards, shared, sortByExtOrder, maxCards) {
-      var cards = JSON.parse(JSON.stringify(_cards.base))
+      var cards = {}
       if (sortByExtOrder.length) {
         console.log(sortByExtOrder)
-        this.orderArray(sortByExtOrder,cards, "url")
+        cards = this.orderArray(sortByExtOrder,cards, "url")
+      } else {
+        cards = JSON.parse(JSON.stringify(_cards.base))
       }
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].url) {
