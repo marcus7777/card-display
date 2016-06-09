@@ -225,14 +225,17 @@
           toSort.push({url: cards[i].url,regret: +cards[i].__regret} )
         }
         var thatCardDisplay = this
-        // Make a simple request:
-        chrome.runtime.sendMessage(editorExtensionId, toSort,{},
-          function(response) {
-            if (response) {
-              thatCardDisplay.set("sortByExtOrder", response)
+        if (!this.sortByExtOrderResponseWaiting) {
+          thatCardDisplay.sortByExtOrderResponseWaiting = true
+          chrome.runtime.sendMessage(editorExtensionId, toSort,
+            function(response) {
+              thatCardDisplay.sortByExtOrderResponseWaiting = false
+              if (response) {
+                thatCardDisplay.set("sortByExtOrder", response)
+              }
             }
-          }
-        )
+          )
+        }
       }
     },
     getHand: function(_cards, shared, sortByExtOrder, maxCards) {
