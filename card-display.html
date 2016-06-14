@@ -153,9 +153,9 @@
       hand: {computed: "getHand(cards.*, shared.*, sortByExtOrder, maxCards)"},
       sortByExt: {type: Boolean, value: false},
       sortByExtOrder: {type: Array, value: []},
-      _doThis: {computed: "getSortByExtOrder(cards.*, sortByExt, editorExtensionId)"},
+      _doThis: {computed: "getSortByExtOrder(cards.*, sortByExt, extensionId)"},
       maxCards: {type: Number, value: 7},
-      editorExtensionId: {type: String, value: "dfcneagmkfhjgefgogpaakjfjknefbdg"},
+      extensionId: {type: String, value: "dfcneagmkfhjgefgogpaakjfjknefbdg"},
       selectableCards: {computed: "getSelectableCards(cards.*)"}
     },
     getPadding: function(num) {
@@ -217,7 +217,7 @@
       }
       return output
     },
-    getSortByExtOrder: function(_cards, sortByExt, editorExtensionId) {
+    getSortByExtOrder: function(_cards, sortByExt, extensionId) {
       var cards = this.layout(_cards.base)
       if (sortByExt) {
         var toSort = []
