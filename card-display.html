@@ -225,7 +225,7 @@
           toSort.push({url: cards[i].url,regret: +cards[i].__regret} )
         }
         var thatCardDisplay = this
-        chrome.runtime.sendMessage(editorExtensionId, toSort,
+        chrome.runtime.sendMessage(extensionId, toSort,
           function(response) {
             if (response) {
               thatCardDisplay.set("sortByExtOrder", response)
