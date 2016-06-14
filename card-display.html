@@ -244,7 +244,7 @@
       }
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].url) {
-          if (shared.base[this.hash(cards[i].url)]) {
+          if (shared.base !== null && shared.base[this.hash(cards[i].url)]) {
             for (var attr in shared.base[this.hash(cards[i].url)]) {
               cards[i][attr] = shared.base[this.hash(cards[i].url)][attr]
             }
