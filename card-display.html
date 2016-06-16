@@ -411,9 +411,9 @@
       return ordered_array.sort(function(a, b) {
         if (a.hasOwnProperty("__index") && a.hasOwnProperty("__index")) {
           return a.__index - b.__index
-        } elseif (a.hasOwnProperty("__index")) {
+        } else if (a.hasOwnProperty("__index")) {
           return -1
-        } elseif (b.hasOwnProperty("__index")) {
+        } else if (b.hasOwnProperty("__index")) {
           return 1
         } else {
           return 0
