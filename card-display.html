@@ -385,7 +385,7 @@
       } else if (e.target.hasOwnProperty("dataIndex")) {
         selected = e.target.dataIndex
       } 
-      this.fire("tapped", {card: this.cards[selected], text: e.target.innerText, tag: e.target.tagName})
+      this.fire("tapped", {card: this.hand[selected], text: e.target.innerText, tag: e.target.tagName})
     },
     orderArray: function (order, array, by) {
       var ordered_array = []
