@@ -99,7 +99,7 @@
                 </template>
                 <template is="dom-if" if="{{!isCard(card,'deck')}}">
                   <paper-material elevation="4" class="cardstyle">
-                    <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card, true)}}"></div>
+                    <div data-index="{{index}}" inner-h-t-m-l="{{getHtml(card)}}"></div>
                   </paper-material>
                 </template>
                 <paper-fab icon="done"></paper-fab>
@@ -163,17 +163,11 @@
         case 1:
         case 2:
         case 4:
-        case 6:
           return []
-          break;
-        case 3:
-        case 5:
-          return [1]
           break;
         default:
         return Array(10)
       }
-      
     },
     getSelectableCards: function(_cards){
       var cards = JSON.parse(JSON.stringify(_cards.base))
