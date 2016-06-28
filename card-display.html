@@ -142,7 +142,7 @@
   Polymer({
     is: "card-display",
     properties: {
-      cards: {type: Array, readOnly: true},
+      cards: {type: Array},
       pad: {computed: "getPadding(cards.length)"},
       shared:{value: {}},
       selected: {type: Array, notify: true},
@@ -154,7 +154,7 @@
       sortByExt: {type: Boolean, value: false},
       sortByExtOrder: {type: Array, value: []},
       _doThis: {computed: "getSortByExtOrder(cards.*, sortByExt, extensionId)"},
-      maxCards: {type: Number, value: 7},
+      maxCards: {type: Number, value: 10},
       extensionId: {type: String, value: "dfcneagmkfhjgefgogpaakjfjknefbdg"},
       selectableCards: {computed: "getSelectableCards(cards.*)"}
     },
