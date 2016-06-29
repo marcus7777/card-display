@@ -184,7 +184,7 @@
       var hasDeck = false
       var thatLayout = this
       cards.forEach(function(card) {
-        if (card.url.startsWith("deck")) {
+        if (card.url && card.url.startsWith("deck")) {
           hasDeck = true
           thatLayout.layout(thatLayout.objectToArray(card.data)).forEach(function(card) {
             list[thatLayout.hash(card.url)] = card
