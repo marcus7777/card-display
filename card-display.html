@@ -92,7 +92,7 @@
         </sortable-list>
       </template>
       <template is="dom-if" if="{{selectable}}" restamp>
-        <iron-selector multi selected-values="{{selected}}">
+        <iron-selector multi selected-values="{{selectedIndex}}">
           <template is="dom-repeat" items="{{selectableCards}}" as="card" observe="title data">
             <template is="dom-if" if="{{!card.hidden}}">
               <div class="cardcontainer" on-tap="tapped" data-index="{{index}}">
@@ -158,7 +158,7 @@
       _doThis: {computed: "getSortByExtOrder(cards.*, sortByExt, extensionId)"},
       maxCards: {type: Number, value: 10},
       extensionId: {type: String, value: "dfcneagmkfhjgefgogpaakjfjknefbdg"},
-      selectableCards: {computed: "getSelectableCards(cards.*)"}
+      selectableCards: {computed: "layout(cards)"}
     },
     getPadding: function(num) {
       switch(num) {
@@ -170,16 +170,6 @@
         default:
         return Array(10)
       }
-    },
-    getSelectableCards: function(_cards){
-      var cards = JSON.parse(JSON.stringify(_cards.base))
-      var hand = []
-      for (var i = 0; i < cards.length; i++) {
-        if (cards[i].url) {
-          hand.push(cards[i])
-        }
-      }
-      return hand
     },
     layout: function(cards) {
       var list = {}
