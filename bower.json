@@ -17,7 +17,7 @@
     "mediator-data": "marcus7777/mediator-data",
     "card-deck": "marcus7777/card-deck",
     "paper-material": "PolymerElements/paper-material#~1.0.6",
-    "sortable-list": "marcus7777/sortable-list,
+    "sortable-list": "marcus7777/sortable-list",
     "paper-fab": "PolymerElements/paper-fab#~1.2.0",
     "iron-selector": "PolymerElements/iron-selector#~1.0.8",
     "paper-dialog": "PolymerElements/paper-dialog"
