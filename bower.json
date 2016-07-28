@@ -8,12 +8,18 @@
     "web-components"
   ],
   "dependencies": {
-    "polymer": "*",
-    "card-deck": "marcus7777/card-deck#master",
+    "iron-location": "polymerelements/iron-location#~0.8.5",
+    "card-display": "marcus7777/card-display",
+    "iron-localstorage": "PolymerElements/iron-localstorage",
+    "url-data": "marcus7777/url-data",
+    "paper-button": "polymerelements/paper-button#~1.0.12",
+    "paper-toolbar": "PolymerElements/paper-toolbar#~1.1.6",
+    "mediator-data": "marcus7777/mediator-data",
+    "card-deck": "marcus7777/card-deck",
     "paper-material": "PolymerElements/paper-material#~1.0.6",
-    "sortable-list": "marcus7777/sortable-list#master",
-    "update-data": "marcus7777/update-data#master",
+    "sortable-list": "marcus7777/sortable-list,
     "paper-fab": "PolymerElements/paper-fab#~1.2.0",
-    "iron-selector": "PolymerElements/iron-selector#~1.0.8"
+    "iron-selector": "PolymerElements/iron-selector#~1.0.8",
+    "paper-dialog": "PolymerElements/paper-dialog"
   }
 }
